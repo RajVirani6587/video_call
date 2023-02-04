@@ -25,6 +25,6 @@ class _splash_screenState extends State<splash_screen> {
 
   void isLogin() async {
     Timer(Duration(seconds: 4), () =>
-        Navigator.pushReplacementNamed(context, 'first'));
+        Navigator.pushReplacementNamed(context, 'intro'));
   }
 }
