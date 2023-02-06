@@ -3,14 +3,14 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'package:video_call/provider/home_provider.dart';
 
-class Home_Screen extends StatefulWidget {
-  const Home_Screen({Key? key}) : super(key: key);
+class selecte_gender extends StatefulWidget {
+  const selecte_gender({Key? key}) : super(key: key);
 
   @override
-  State<Home_Screen> createState() => _Home_ScreenState();
+  State<selecte_gender> createState() => _selecte_genderState();
 }
 
-class _Home_ScreenState extends State<Home_Screen> {
+class _selecte_genderState extends State<selecte_gender> {
 
 
   Home_Provider? home_providerT;
@@ -34,12 +34,12 @@ class _Home_ScreenState extends State<Home_Screen> {
                   Row(
                     children: [
                       IconButton(onPressed: (){
-                        Navigator.pushNamed(context,'intro');
+                        Navigator.pushNamed(context,'home');
                       }, icon: Icon(Icons.arrow_back,size: 35,color: Colors.white,)),
                     ],
                   ),
                     SizedBox(height: height!*0.1,),
-                    Text("My Gender",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 40),),
+                    Text("In Which Interest Gender",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 30),),
                      SizedBox(height: height!*0.09,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -60,7 +60,8 @@ class _Home_ScreenState extends State<Home_Screen> {
                                 decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                                 child:InkWell(onTap: (){
                                   home_providerF!.playpause();
-                                },child: home_providerT!.isplay ?Image.asset("assets/image/Group (2).jpg",fit: BoxFit.fill,):Image.asset("assets/image/Group (1).jpg",fit: BoxFit.fill,)),
+                                },child: home_providerT!.isplay ?Image.asset("assets/image/Group (1).jpg",fit: BoxFit.fill,):Image.asset("assets/image/Group (2).jpg",fit: BoxFit.fill,)),
+                                  //icon:Icon(topTrue!.isplay?Icons.pause_circle_outline:Icons.play_circle_fill,color: Colors.white,size: 40,)
                                ),
                             ),
                           SizedBox(height: height!*0.02,),
@@ -83,7 +84,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                 decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                                child:InkWell(onTap: (){
                                       home_providerF!.playpause();
-                                },child: home_providerT!.isplay ?Image.asset("assets/image/Group 1 (1).jpg",fit: BoxFit.fill,):Image.asset("assets/image/Group 1 (2).jpg",fit: BoxFit.fill,)),
+                                },child: home_providerT!.isplay ?Image.asset("assets/image/Group 1 (2).jpg",fit: BoxFit.fill,):Image.asset("assets/image/Group 1 (1).jpg",fit: BoxFit.fill,)),
                               ),
                           ),
                           SizedBox(height: height!*0.02,),
@@ -101,7 +102,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                         children: [
                           InkWell(
                             onTap: (){
-                              Navigator.pushNamed(context,'gender');
+                              Navigator.pushNamed(context,'birth');
                             },
                             child: Neumorphic(
                               style: NeumorphicStyle(
@@ -115,6 +116,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                           Text('Confirm',style: TextStyle(color: Colors.white,fontSize: 20),),
                         ],
                       ),
+
                     ],
                   ),
                   SizedBox(height: height!*0.02,),
