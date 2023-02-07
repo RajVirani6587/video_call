@@ -9,6 +9,7 @@ import 'package:video_call/view/intro_screen.dart';
 import 'package:video_call/view/demo.dart';
 import 'package:video_call/view/sele_gender.dart';
 import 'package:video_call/view/splash%20screen/splash_screen.dart';
+import 'package:video_call/view/your_goal_screen.dart';
 void main(){
 
   runApp(
@@ -18,7 +19,7 @@ void main(){
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        //initialRoute: 'd',
+        initialRoute: 'avatar',
         routes: {
           'd':(conest)=>Secode_Screen(),
           '/':(contest)=>splash_screen(),
@@ -28,6 +29,7 @@ void main(){
           'birth':(contest)=>User_Birthday(),
           'nick':(contest)=>Nickname_Screen(),
           'avatar':(contest)=>Image_Screen(),
+          'your':(contest)=>your_Screen(),
         },
       ),
     ),
