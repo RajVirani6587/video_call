@@ -85,7 +85,6 @@ class _User_BirthdayState extends State<User_Birthday> {
                         Text('Confirm',style: TextStyle(color: Colors.white,fontSize: 20),),
                       ],
                     ),
-
                   ],
                 ),
                 SizedBox(height: height!*0.02,),
@@ -118,7 +117,7 @@ class _User_BirthdayState extends State<User_Birthday> {
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(0),
-        lastDate: DateTime(4000));
+        lastDate: DateTime(3000));
     Provider.of<Home_Provider>(context, listen: false).getdata(data);
   }
 }

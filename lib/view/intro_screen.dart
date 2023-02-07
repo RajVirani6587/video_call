@@ -49,7 +49,6 @@ class intro_Screen extends StatefulWidget {
                 image: Image.asset("assets/image/intro3 1.jpg",height:height!*0.6,width: width!*0.95,),
               ),
               PageViewModel(
-               // decoration: PageDecoration(pageColor: Colors.black54,titleTextStyle: TextStyle(color: Colors.white),bodyTextStyle: TextStyle(color: Colors.white)),
                 footer: Lottie.asset("assets/video/88788-like-icon.json"),
                 title: "Meet",
                 body: "   Meet your friends and New Friends.",
