@@ -53,7 +53,7 @@ class _Nickname_ScreenState extends State<Nickname_Screen> {
                          ),
                          fillColor: Colors.white12,
                          filled: true,
-                           label: Text("Nickname",style: TextStyle(color: Colors.white),),
+                         label: Text("Nickname",style: TextStyle(color: Colors.white),),
                        ),
                      ),
                    ),
