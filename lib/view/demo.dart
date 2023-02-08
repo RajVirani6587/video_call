@@ -1,48 +1,107 @@
-import 'dart:io';
+// import 'dart:io';
+//
+// import 'package:flutter/material.dart';
+// import 'package:image_picker/image_picker.dart';
+//
+//
+// class Secode_Screen extends StatefulWidget {
+//   const Secode_Screen({Key? key}) : super(key: key);
+//
+//   @override
+//   State<Secode_Screen> createState() => _Secode_ScreenState();
+// }
+//
+// class _Secode_ScreenState extends State<Secode_Screen> {
+//   File f1 = File("");
+//   @override
+//
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//       child: Scaffold(
+//         appBar: AppBar(
+//           actions: [
+//             IconButton(
+//               icon: Icon(Icons.image),
+//               onPressed: () async{
+//                 ImagePicker img = ImagePicker();
+//                 XFile? f2 =  await img.pickImage(source: ImageSource.gallery);
+//                 setState((){
+//                   f1 = File(f2!.path);
+//                 });
+//
+//
+//               },
+//             )
+//           ],
+//         ),
+//         body: Container(
+//           height: 100,
+//           width: 100,
+//           color: Colors.black, child: CircleAvatar(
+//             backgroundImage: FileImage(f1),
+//            ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:video_player/video_player.dart';
 
 
-class Secode_Screen extends StatefulWidget {
-  const Secode_Screen({Key? key}) : super(key: key);
+
+class VideoApp extends StatefulWidget {
+  const VideoApp({Key? key}) : super(key: key);
 
   @override
-  State<Secode_Screen> createState() => _Secode_ScreenState();
+  _VideoAppState createState() => _VideoAppState();
 }
 
-class _Secode_ScreenState extends State<Secode_Screen> {
-  File f1 = File("");
+class _VideoAppState extends State<VideoApp> {
+  late VideoPlayerController _controller;
+
   @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset("assets/video/video1.mp4")..initialize().then((_) {
+        setState(() {});
+      });
+  }
 
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: Icon(Icons.image),
-              onPressed: () async{
-                ImagePicker img = ImagePicker();
-                XFile? f2 =  await img.pickImage(source: ImageSource.gallery);
-                setState((){
-                  f1 = File(f2!.path);
-                });
-
-
-              },
-            )
-          ],
+    return MaterialApp(
+      title: 'Video Demo',
+      home: Scaffold(
+        body: Center(
+          child: _controller.value.isInitialized
+              ? AspectRatio(
+            aspectRatio: _controller.value.aspectRatio,
+            child: VideoPlayer(_controller),
+          )
+              : Container(),
         ),
-        body: Container(
-          height: 100,
-          width: 100,
-          color: Colors.black, child: CircleAvatar(
-            backgroundImage: FileImage(f1),
-           ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              _controller.value.isPlaying
+                  ? _controller.pause()
+                  : _controller.play();
+            });
+          },
+          child: Icon(
+            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+          ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 }
 //
