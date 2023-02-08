@@ -28,7 +28,7 @@ void main(){
               accentColor: Colors.black,
             ),
             debugShowCheckedModeBanner: false,
-            initialRoute: 'play',
+          //  initialRoute: 'play',
             routes: {
               'd':(conest)=>VideoApp(),
               '/':(contest)=>splash_screen(),
