@@ -4,7 +4,7 @@ import '../model/video_model.dart';
 
 class Home_Provider extends ChangeNotifier{
 
-  bool isplay = false;
+  bool isplay = false ;
   int con =0;
 
   int i=0;

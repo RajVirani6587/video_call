@@ -20,16 +20,14 @@ class _Second_ScreenState extends State<Second_Screen> {
   Home_Provider? home_providerf;
   Home_Provider? home_providert;
   VideoPlayerController? videoPlayerController;
-  ChewieController? chewieController;
 
   @override
   void initState() {
     super.initState();
     videoPlayerController = VideoPlayerController.asset(
-      //'assets/video/video1.mp4'
-        "${Provider.of<Home_Provider>(context, listen: false).Datapickkk?.video}"
+      'assets/video/video1.mp4',
     );
-    chewieController = ChewieController(videoPlayerController: videoPlayerController!);
+    videoPlayerController!.initialize().then((value) => setState((){}));
   }
 
   @override
@@ -47,19 +45,17 @@ class _Second_ScreenState extends State<Second_Screen> {
                   Container(
                     color: Colors.black,
                     alignment: Alignment.center,
-                    height:90.h,
+                    height:95.h,
                     child: InkWell(
                       onTap: () {
                         home_providerf!.playpause();
-                        if (home_providerf!.isplay == false) {
+                        if (home_providert!.isplay == true ) {
                           videoPlayerController!.play();
                         } else {
                           videoPlayerController!.pause();
                         }
                       },
-                      child: Chewie(
-                        controller: chewieController!,
-                      ),
+                      child: VideoPlayer(videoPlayerController!),
                     ),
                   ),
                   Container(
