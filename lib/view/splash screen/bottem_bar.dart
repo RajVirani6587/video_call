@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../provider/home_provider.dart';
 import '../details_screens/birthday_Screen.dart';
+import '../home/live_screen.dart';
 import '../home/video_screen.dart';
 
 
@@ -16,7 +17,7 @@ class Bottom_Screen extends StatefulWidget {
 }
 
 class _Bottom_ScreenState extends State<Bottom_Screen> {
-  List WidgetsList=[Video_Screen(),User_Birthday(),User_Birthday(),User_Birthday(),User_Birthday(),];
+  List WidgetsList=[Video_Screen(),Live_Screen(),User_Birthday(),User_Birthday(),User_Birthday(),];
   Home_Provider ? home_providert;
   Home_Provider ? home_providerf;
   @override
@@ -50,16 +51,16 @@ class _Bottom_ScreenState extends State<Bottom_Screen> {
                 label: 'Home',
               ),
               BottomBarItem(
-                iconData: Icons.chat,
-                label: 'Chat',
+                iconData: Icons.live_tv,
+                label: 'Live',
               ),
               BottomBarItem(
                 iconData: Icons.notifications,
                 label: 'Notification',
               ),
               BottomBarItem(
-                iconData: Icons.calendar_month,
-                label: 'Calendar',
+                iconData: Icons.chat,
+                label: 'Chat',
               ),
               BottomBarItem(
                 iconData: Icons.settings,

@@ -123,6 +123,6 @@ class _Second_ScreenState extends State<Second_Screen> {
   }
 
   void back(){
-    Navigator.pushReplacementNamed(context, 'video');
+    Navigator.pushReplacementNamed(context, 'bottom');
   }
 }

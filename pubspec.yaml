@@ -44,8 +44,8 @@ dependencies:
   bottom_bar_matu: ^1.3.0
   sizer: ^2.0.15
   video_player: ^2.5.1
-  chewie: ^1.4.0
   face_camera: ^0.0.6
+  like_button: ^2.0.5
 
 dev_dependencies:
   flutter_test:
