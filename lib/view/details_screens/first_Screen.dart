@@ -55,7 +55,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                   color: Colors.white60,
                               ),
                               child: Container(
-                                height: height!*0.25,
+                                height: height!*0.20,
                                 width: width!*0.35,
                                 decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                                 child:InkWell(onTap: (){
@@ -78,7 +78,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                   color: Colors.white60,
                               ),
                               child: Container(
-                                height: height!*0.25,
+                                height: height!*0.20,
                                 width: width!*0.35,
                                 decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                                child:InkWell(onTap: (){
