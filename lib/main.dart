@@ -1,3 +1,4 @@
+import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -14,7 +15,11 @@ import 'package:video_call/view/details_screens/sele_gender.dart';
 import 'package:video_call/view/splash%20screen/bottem_bar.dart';
 import 'package:video_call/view/splash%20screen/splash_screen.dart';
 import 'package:video_call/view/details_screens/your_goal_screen.dart';
-void main(){
+
+void main()async{
+
+  WidgetsFlutterBinding.ensureInitialized(); //Add this
+  await FaceCamera.initialize();
 
   runApp(
     MultiProvider(
@@ -28,9 +33,9 @@ void main(){
               accentColor: Colors.black,
             ),
             debugShowCheckedModeBanner: false,
-          //  initialRoute: 'play',
+           initialRoute: 'bottom',
             routes: {
-              'd':(conest)=>VideoApp(),
+              'd':(conest)=>Call_screen(),
               '/':(contest)=>splash_screen(),
               'intro':(contest)=>intro_Screen(),
               'home':(contest)=>Home_Screen(),

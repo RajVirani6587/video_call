@@ -1,107 +1,59 @@
-// import 'dart:io';
-//
-// import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
-//
-//
-// class Secode_Screen extends StatefulWidget {
-//   const Secode_Screen({Key? key}) : super(key: key);
-//
-//   @override
-//   State<Secode_Screen> createState() => _Secode_ScreenState();
-// }
-//
-// class _Secode_ScreenState extends State<Secode_Screen> {
-//   File f1 = File("");
-//   @override
-//
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         appBar: AppBar(
-//           actions: [
-//             IconButton(
-//               icon: Icon(Icons.image),
-//               onPressed: () async{
-//                 ImagePicker img = ImagePicker();
-//                 XFile? f2 =  await img.pickImage(source: ImageSource.gallery);
-//                 setState((){
-//                   f1 = File(f2!.path);
-//                 });
-//
-//
-//               },
-//             )
-//           ],
-//         ),
-//         body: Container(
-//           height: 100,
-//           width: 100,
-//           color: Colors.black, child: CircleAvatar(
-//             backgroundImage: FileImage(f1),
-//            ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
+import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
+import 'dart:io';
 
 
-
-class VideoApp extends StatefulWidget {
-  const VideoApp({Key? key}) : super(key: key);
+class Call_screen extends StatefulWidget {
+  const Call_screen({Key? key}) : super(key: key);
 
   @override
-  _VideoAppState createState() => _VideoAppState();
+  State<Call_screen> createState() => _Call_screenState();
 }
 
-class _VideoAppState extends State<VideoApp> {
-  late VideoPlayerController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.asset("assets/video/video1.mp4")..initialize().then((_) {
-        setState(() {});
-      });
-  }
-
+class _Call_screenState extends State<Call_screen> {
+  File? _capturedImage;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Video Demo',
-      home: Scaffold(
-        body: Center(
-          child: _controller.value.isInitialized
-              ? AspectRatio(
-            aspectRatio: _controller.value.aspectRatio,
-            child: VideoPlayer(_controller),
-          )
-              : Container(),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _controller.value.isPlaying
-                  ? _controller.pause()
-                  : _controller.play();
-            });
-          },
-          child: Icon(
-            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-          ),
-        ),
+    return Scaffold(
+      body: Builder(builder: (context) {
+        if (_capturedImage != null) {
+          return Center(
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Image.file(_capturedImage!),
+              ],
+            ),
+          );
+        }
+        return Stack(
+          alignment: Alignment.bottomRight,
+          children: [
+            Center(
+              child: Container(
+                color: Colors.pink,
+                height: double.infinity,
+                width: double.infinity,
+              ),
+            ),
+            ClipRRect(borderRadius: BorderRadius.circular(10),
+              child: Container(
+                height: MediaQuery.of(context).size.height*0.27,
+                width: MediaQuery.of(context).size.width*0.35,
+                child: SmartFaceCamera(
+                  //  autoCapture: true,
+                  defaultCameraLens: CameraLens.front,
+                  onCapture: (File? image) {
+                    _capturedImage = image;
+                  },
+                ),
+              ),
+            ),
+          ],
+        );
+      }
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
   }
 }
 //

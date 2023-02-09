@@ -24,6 +24,7 @@ class _Video_ScreenState extends State<Video_Screen> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
+          centerTitle: true,
           title: Text("Popular",style: TextStyle(color: Colors.pink,fontSize: 30,fontWeight: FontWeight.bold),),
         ),
         body: GridView.builder(
@@ -44,7 +45,7 @@ class _Video_ScreenState extends State<Video_Screen> {
                       child: Column(
                         children: [
                           Container(
-                            height:35.h,
+                            height:30.h,
                             width: 48.w,
                           decoration: BoxDecoration(
                             color: Colors.black,

@@ -39,7 +39,7 @@ class _selecte_genderState extends State<selecte_gender> {
                     ],
                   ),
                     SizedBox(height: height!*0.1,),
-                    Text("In Which Interest Gender",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 30),),
+                    Text("In Which Interest Gender",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),),
                      SizedBox(height: height!*0.09,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -55,7 +55,7 @@ class _selecte_genderState extends State<selecte_gender> {
                                   color: Colors.white60,
                               ),
                               child: Container(
-                                height: height!*0.25,
+                                height: height!*0.20,
                                 width: width!*0.35,
                                 decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                                 child:InkWell(onTap: (){
@@ -79,7 +79,7 @@ class _selecte_genderState extends State<selecte_gender> {
                                   color: Colors.white60,
                               ),
                               child: Container(
-                                height: height!*0.25,
+                                height: height!*0.20,
                                 width: width!*0.35,
                                 decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                                child:InkWell(onTap: (){

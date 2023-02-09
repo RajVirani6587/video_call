@@ -45,6 +45,7 @@ dependencies:
   sizer: ^2.0.15
   video_player: ^2.5.1
   chewie: ^1.4.0
+  face_camera: ^0.0.6
 
 dev_dependencies:
   flutter_test:

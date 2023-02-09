@@ -35,15 +35,15 @@ class _Image_ScreenState extends State<Image_Screen> {
                   ],
                 ),
                 SizedBox(height: height!*0.1,),
-                Text("Upload your photo",style: TextStyle(color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold),),
-                SizedBox(height: height!*0.13,),
+                Text("Upload your photo",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
+                SizedBox(height: height!*0.1,),
                 InkWell(
                   onTap: (){
                     bottomsheetdilaog();
                        },
                   child: Container(
-                    height: 150,
-                    width: 150,
+                    height: height!*0.35,
+                    width: width!*0.40,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white30,
@@ -54,7 +54,7 @@ class _Image_ScreenState extends State<Image_Screen> {
                     ),
                   ),
                 ),
-                SizedBox(height: height!*0.13,),
+                SizedBox(height: height!*0.1,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
