@@ -22,6 +22,7 @@ class _Video_ScreenState extends State<Video_Screen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: Text("."),
           elevation: 0,
           backgroundColor: Colors.white,
           centerTitle: true,

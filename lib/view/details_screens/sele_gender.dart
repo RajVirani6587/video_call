@@ -39,7 +39,7 @@ class _selecte_genderState extends State<selecte_gender> {
                     ],
                   ),
                     SizedBox(height: height!*0.1,),
-                    Text("In Which Interest Gender",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),),
+                    Text("In Which Interest In Gender",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),),
                      SizedBox(height: height!*0.09,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -61,7 +61,6 @@ class _selecte_genderState extends State<selecte_gender> {
                                 child:InkWell(onTap: (){
                                   home_providerF!.playpause();
                                 },child: home_providerT!.isplay ?Image.asset("assets/image/Group (1).jpg",fit: BoxFit.fill,):Image.asset("assets/image/Group (2).jpg",fit: BoxFit.fill,)),
-                                  //icon:Icon(topTrue!.isplay?Icons.pause_circle_outline:Icons.play_circle_fill,color: Colors.white,size: 40,)
                                ),
                             ),
                           SizedBox(height: height!*0.02,),

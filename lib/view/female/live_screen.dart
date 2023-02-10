@@ -1,10 +1,11 @@
-import 'dart:math';
 
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../model/video_model.dart';
 import '../../provider/home_provider.dart';
 
 class Live_Screen extends StatefulWidget {
@@ -22,8 +23,10 @@ class _Live_ScreenState extends State<Live_Screen> {
     super.initState();
     forvideo();
   }
+
   Home_Provider? home_providerf;
   Home_Provider? home_providert;
+
   @override
   Widget build(BuildContext context) {
     home_providerf = Provider.of<Home_Provider>(context,listen: false);
@@ -32,9 +35,9 @@ class _Live_ScreenState extends State<Live_Screen> {
       child: Scaffold(
         body: PageView.builder(
             scrollDirection: Axis.vertical,
-            itemCount: home_providerf!.i1.length,onPageChanged: (value) {
+            itemCount: home_providerf!.i1.length,
+          onPageChanged: (value) {
                 forvideo();
-
             },
             itemBuilder: (Contest,index){
               return Stack(
@@ -71,7 +74,7 @@ class _Live_ScreenState extends State<Live_Screen> {
                            ),
                          ],
                        ),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.58,),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.55,),
                       Expanded(
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -81,32 +84,42 @@ class _Live_ScreenState extends State<Live_Screen> {
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  LikeButton(
-                                    size: 40,
-                                    circleColor: CircleColor(
-                                        start: Colors.pinkAccent,
-                                        end: Colors.redAccent),
-                                    bubblesColor: BubblesColor(
-                                      dotPrimaryColor: Color(0xff33b5e5),
-                                      dotSecondaryColor: Color(0xff0099cc),
-                                    ),
-                                    likeBuilder: (bool isLiked) {
-                                      return Icon(
-                                        isLiked
-                                            ? Icons.favorite
-                                            : Icons.favorite_border,
-                                        color: isLiked
-                                            ? Colors.red
-                                            : Colors.white,
-                                        size: 40,
-                                      );
-                                    },
-                                  ),
-                                  SizedBox(height: MediaQuery.of(context).size.height*0.025,),
                                   Padding(
-                                    padding: const EdgeInsets.only(right: 10),
-                                    child: Image.asset("assets/image/Vector.png",height: MediaQuery.of(context).size.height*0.04,width: MediaQuery.of(context).size.width*0.09,fit: BoxFit.fill,),
-                                  ),],
+                                    padding:  EdgeInsets.only(right:5),
+                                    child: LikeButton(
+                                      size: 40,
+                                      circleColor: CircleColor(
+                                          start: Colors.pinkAccent,
+                                          end: Colors.redAccent),
+                                      bubblesColor: BubblesColor(
+                                        dotPrimaryColor: Color(0xff33b5e5),
+                                        dotSecondaryColor: Color(0xff0099cc),
+                                      ),
+                                      likeBuilder: (bool isLiked) {
+                                        return Icon(
+                                          isLiked
+                                              ? Icons.favorite
+                                              : Icons.favorite_border,
+                                          color: isLiked
+                                              ? Colors.red
+                                              : Colors.white,
+                                          size: 40,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+                                  Padding(
+                                    padding:  EdgeInsets.only(right: 6),
+                                    child: IconButton(onPressed: (){
+                                      home_providerf!.Datapickkk = Modeldata2(
+                                        Name2: home_providerf!.i1[index].Name2,
+                                        Image2: home_providerf!.i1[index].Image2,
+                                      );
+                                      Navigator.pushNamed(context,'chat');
+                                    }, icon:Icon(Icons.chat,color: Colors.white,size: 33,)),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -121,7 +134,7 @@ class _Live_ScreenState extends State<Live_Screen> {
                               Row(
                                 children: [
                                   Padding(
-                                    padding:  EdgeInsets.all(13.0),
+                                    padding:  EdgeInsets.only(bottom: 13,right: 13,left: 13),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
                                       child: Image.asset("${home_providerf!.i1[index].Image2}",
@@ -131,7 +144,10 @@ class _Live_ScreenState extends State<Live_Screen> {
                                       ),
                                     ),
                                   ),
-                                  Text("${home_providerf!.i1[index].Name2}",style: TextStyle(color: Colors.white,fontSize: 20),),
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
+                                    child: Text("${home_providerf!.i1[index].Name2}",style: TextStyle(color: Colors.white,fontSize: 20),),
+                                  ),
                                 ],
                               ),
                               Padding(
@@ -176,7 +192,9 @@ class _Live_ScreenState extends State<Live_Screen> {
         setState(() {
           _controller.setLooping(true);
           _controller.play();
-        });
-      });
+          }
+        );
+      }
+    );
   }
 }

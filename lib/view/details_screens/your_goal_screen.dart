@@ -133,7 +133,7 @@ class _your_ScreenState extends State<your_Screen> {
                       children: [
                         InkWell(
                           onTap: (){
-                               Navigator.pushReplacementNamed(context,'bottom');
+                               Navigator.pushReplacementNamed(context,'selected');
                            },
                           child:Neumorphic(
                             style: NeumorphicStyle(
