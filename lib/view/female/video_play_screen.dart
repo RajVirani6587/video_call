@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
@@ -78,7 +79,8 @@ class _Second_ScreenState extends State<Second_Screen> {
                       ),
                     ],
                   ),
-                  ClipRRect(borderRadius: BorderRadius.circular(10),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
                     child: Container(
                       height: MediaQuery.of(context).size.height*0.27,
                       width: MediaQuery.of(context).size.width*0.35,
@@ -91,27 +93,27 @@ class _Second_ScreenState extends State<Second_Screen> {
                       ),
                     ),
                   ),
-                  // Container(
-                  //   margin: const EdgeInsets.all(13),
-                  //   child: Row(
-                  //     children: [
-                  //       IconButton(
-                  //           onPressed: () {
-                  //             home_providerf!.playpause();
-                  //               _controller.pause();
-                  //             Navigator.pop(context);
-                  //           },
-                  //           icon: const Icon(
-                  //             Icons.arrow_back_ios,
-                  //             color: Colors.white,
-                  //           )),
-                  //     ],
-                  //   ),
-                  // ),
                 ],
               );
             }),
-          )
+            floatingActionButton: Padding(
+              padding:  EdgeInsets.only(bottom: 5),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  width: MediaQuery.of(context).size.width*0.2,
+                  height: MediaQuery.of(context).size.height*0.2,
+                  child: FloatingActionButton(
+                    onPressed: (){
+                      dialog();
+                    },
+                    child: Icon(Icons.call,size: 40,),
+                    backgroundColor: Colors.red,
+                  ),
+                ),
+              ),
+            ),
+          ),
       ),
     );
   }

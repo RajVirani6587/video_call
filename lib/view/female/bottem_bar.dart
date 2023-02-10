@@ -1,11 +1,13 @@
 import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:video_call/view/female/tabbar_Screen.dart';
 
 import '../../provider/home_provider.dart';
 import '../details_screens/birthday_Screen.dart';
-import '../home/live_screen.dart';
-import '../home/video_screen.dart';
+import 'contrary_screen.dart';
+import 'live_screen.dart';
+import 'video_screen.dart';
 
 
 
@@ -17,7 +19,7 @@ class Bottom_Screen extends StatefulWidget {
 }
 
 class _Bottom_ScreenState extends State<Bottom_Screen> {
-  List WidgetsList=[Video_Screen(),Live_Screen(),User_Birthday(),User_Birthday(),User_Birthday(),];
+  List WidgetsList=[Video_Screen(),Live_Screen(),ContraryTabbar_Screen(),User_Birthday(),User_Birthday(),];
   Home_Provider ? home_providert;
   Home_Provider ? home_providerf;
   @override
@@ -33,18 +35,17 @@ class _Bottom_ScreenState extends State<Bottom_Screen> {
       ),
     );
   }
-
   Widget _createBottomNavigationBar() {
     return Container(
+      height: MediaQuery.of(context).size.height*0.07,
       color: Colors.pink,
       child:  Stack(
         children: [
           Image.asset("assets/image/Rectangle 3 (1).jpg",width: MediaQuery.of(context).size.width*1,fit: BoxFit.fill,),
           BottomBarBubble(
             color: Colors.white,
-             bubbleSize: 10,
             backgroundColor: Colors.transparent,
-            height: 60,
+            height: 70,
             items: [
               BottomBarItem(
                 iconData: Icons.home,
@@ -55,8 +56,8 @@ class _Bottom_ScreenState extends State<Bottom_Screen> {
                 label: 'Live',
               ),
               BottomBarItem(
-                iconData: Icons.notifications,
-                label: 'Notification',
+                iconData: Icons.flag,
+                label: 'contrary',
               ),
               BottomBarItem(
                 iconData: Icons.chat,

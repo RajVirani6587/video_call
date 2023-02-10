@@ -7,13 +7,17 @@ import 'package:video_call/view/details_screens/NICKNAME_SCREEN.dart';
 import 'package:video_call/view/details_screens/birthday_Screen.dart';
 import 'package:video_call/view/details_screens/first_Screen.dart';
 import 'package:video_call/view/details_screens/image_screen.dart';
-import 'package:video_call/view/home/live_screen.dart';
-import 'package:video_call/view/home/video_play_screen.dart';
-import 'package:video_call/view/home/video_screen.dart';
+import 'package:video_call/view/details_screens/selecte_screen.dart';
+import 'package:video_call/view/female/bottem_bar.dart';
+import 'package:video_call/view/female/chat_screen.dart';
+import 'package:video_call/view/female/contrary_screen.dart';
+import 'package:video_call/view/female/live_screen.dart';
+import 'package:video_call/view/female/tabbar_Screen.dart';
+import 'package:video_call/view/female/video_play_screen.dart';
+import 'package:video_call/view/female/video_screen.dart';
 import 'package:video_call/view/splash%20screen/intro_screen.dart';
 import 'package:video_call/view/demo.dart';
 import 'package:video_call/view/details_screens/sele_gender.dart';
-import 'package:video_call/view/splash%20screen/bottem_bar.dart';
 import 'package:video_call/view/splash%20screen/splash_screen.dart';
 import 'package:video_call/view/details_screens/your_goal_screen.dart';
 
@@ -36,19 +40,25 @@ void main()async{
             debugShowCheckedModeBanner: false,
            initialRoute: 'bottom',
             routes: {
-              'd':(conest)=>Call_screen(),
-              '/':(contest)=>splash_screen(),
-              'intro':(contest)=>intro_Screen(),
-              'home':(contest)=>Home_Screen(),
-              'gender':(contest)=>selecte_gender(),
-              'birth':(contest)=>User_Birthday(),
-              'nick':(contest)=>Nickname_Screen(),
-              'avatar':(contest)=>Image_Screen(),
-              'your':(contest)=>your_Screen(),
-              'bottom':(contest)=>Bottom_Screen(),
-              'video':(contest)=>Video_Screen(),
-              'play':(contest)=>Second_Screen(),
-              'live':(contest)=>Live_Screen(),
+              'd':(conest)=>            Call_screen(),
+              '/':(contest)=>         splash_screen(),
+              'intro':(contest)=>      intro_Screen(),
+              'home':(contest)=>        Home_Screen(),
+              'gender':(contest)=>   selecte_gender(),
+              'birth':(contest)=>     User_Birthday(),
+              'nick':(contest)=>    Nickname_Screen(),
+              'avatar':(contest)=>     Image_Screen(),
+              'your':(contest)=>        your_Screen(),
+              'selected':(contest)=>Selected_Screen(),
+
+              'bottom':(contest)=>    Bottom_Screen(),
+              'video':(contest)=>      Video_Screen(),
+              'play':(contest)=>      Second_Screen(),
+              'live':(contest)=>        Live_Screen(),
+              'chat':(contest)=>        Chat_Screen(),
+              'contrary':(contest)=>Contrary_Screen(),
+              'tab':(contest)=>ContraryTabbar_Screen(),
+
             },
           );
         },
