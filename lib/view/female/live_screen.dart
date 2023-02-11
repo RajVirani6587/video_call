@@ -34,6 +34,7 @@ class _Live_ScreenState extends State<Live_Screen> {
       onWillPop: dialog,
       child: SafeArea(
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           body: PageView.builder(
             scrollDirection: Axis.vertical,
             itemCount: home_providerf!.i1.length,
@@ -249,5 +250,10 @@ class _Live_ScreenState extends State<Live_Screen> {
 
   void back() {
     Navigator.pushReplacementNamed(context, 'bottom');
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    dialog();
   }
 }

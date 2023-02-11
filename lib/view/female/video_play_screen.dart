@@ -45,6 +45,7 @@ class _Second_ScreenState extends State<Second_Screen> {
       onWillPop:dialog,
       child: SafeArea(
           child: Scaffold(
+            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.black,
             body: Builder(builder: (context){
               if (_capturedImage != null) {
@@ -101,8 +102,8 @@ class _Second_ScreenState extends State<Second_Screen> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  width: MediaQuery.of(context).size.width*0.2,
-                  height: MediaQuery.of(context).size.height*0.2,
+                  width: MediaQuery.of(context).size.width*0.15,
+                  height: MediaQuery.of(context).size.height*0.15,
                   child: FloatingActionButton(
                     onPressed: (){
                       dialog();

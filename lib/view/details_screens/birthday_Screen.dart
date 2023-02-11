@@ -25,7 +25,8 @@ class _User_BirthdayState extends State<User_Birthday> {
     home_providerF = Provider.of<Home_Provider>(context,listen: false);
     home_providerT = Provider.of<Home_Provider>(context,listen: true);
     return SafeArea(
-      child: Scaffold(resizeToAvoidBottomInset: false,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
        body: Stack(
          children: [
            Image.asset("assets/image/Rectangle 1.jpg",height: double.infinity,width: double.infinity,fit: BoxFit.fill,),

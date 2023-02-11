@@ -8,10 +8,13 @@ import 'package:video_call/view/details_screens/birthday_Screen.dart';
 import 'package:video_call/view/details_screens/first_Screen.dart';
 import 'package:video_call/view/details_screens/image_screen.dart';
 import 'package:video_call/view/details_screens/selecte_screen.dart';
+import 'package:video_call/view/female/Contrary_Language_screen/language_screen.dart';
 import 'package:video_call/view/female/bottem_bar.dart';
 import 'package:video_call/view/female/chat_screen.dart';
-import 'package:video_call/view/female/contrary_screen.dart';
+import 'package:video_call/view/female/Contrary_Language_screen/contrary_screen.dart';
 import 'package:video_call/view/female/live_screen.dart';
+import 'package:video_call/view/female/porfile_screen.dart';
+import 'package:video_call/view/female/post_screen.dart';
 import 'package:video_call/view/female/tabbar_Screen.dart';
 import 'package:video_call/view/female/video_play_screen.dart';
 import 'package:video_call/view/female/video_screen.dart';
@@ -35,7 +38,6 @@ void main()async{
         builder: (context, orientation, deviceType){
           return   MaterialApp(
             theme: ThemeData(
-              accentColor: Colors.black,
             ),
             debugShowCheckedModeBanner: false,
            initialRoute: 'bottom',
@@ -58,7 +60,9 @@ void main()async{
               'chat':(contest)=>        Chat_Screen(),
               'contrary':(contest)=>Contrary_Screen(),
               'tab':(contest)=>ContraryTabbar_Screen(),
-
+              'language':(contest)=>Language_Screen(),
+              'Post':(contest)=>        Post_Screen(),
+              'profile':(contest)=>  Profile_Screen(),
             },
           );
         },

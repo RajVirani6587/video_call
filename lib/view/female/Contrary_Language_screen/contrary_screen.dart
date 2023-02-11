@@ -16,7 +16,7 @@ class _Contrary_ScreenState extends State<Contrary_Screen> {
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Center(
@@ -68,8 +68,8 @@ class _Contrary_ScreenState extends State<Contrary_Screen> {
                                         borderRadius:
                                             BorderRadius.circular(20)),
                                   ),
-                                  //style: MaterialStateProperty.all<RoundedRectangleBorder>(B),
                                   onPressed: () {
+                                   // Navigator.pushReplacementNamed(context,'bottom');
                                     setState(() {
                                       cnt = 0;
                                     });
@@ -329,6 +329,7 @@ class _Contrary_ScreenState extends State<Contrary_Screen> {
       ),
     );
   }
+
 
   Widget Selecte(String image, String text, int i) {
     return ElevatedButton(

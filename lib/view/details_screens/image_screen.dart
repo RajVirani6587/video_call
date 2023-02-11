@@ -22,6 +22,7 @@ class _Image_ScreenState extends State<Image_Screen> {
     width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
+          resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             Image.asset("assets/image/Rectangle 1.jpg",height: double.infinity,width: double.infinity,fit: BoxFit.fill,),

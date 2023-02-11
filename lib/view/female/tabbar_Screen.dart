@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'contrary_screen.dart';
+import 'Contrary_Language_screen/contrary_screen.dart';
+import 'Contrary_Language_screen/language_screen.dart';
 
 class ContraryTabbar_Screen extends StatefulWidget {
   const ContraryTabbar_Screen({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class _ContraryTabbar_ScreenState extends State<ContraryTabbar_Screen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
           child: Container(
             child: Column(
@@ -49,7 +51,7 @@ class _ContraryTabbar_ScreenState extends State<ContraryTabbar_Screen> {
                               child: TabBarView(
                                 children: [
                                   Contrary_Screen(),
-                                  Contrary_Screen(),
+                                  Language_Screen(),
                                 ],
                               ),
                             ),

@@ -1,11 +1,16 @@
+import 'dart:math';
+
 import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:video_call/view/female/porfile_screen.dart';
+import 'package:video_call/view/female/post_screen.dart';
 import 'package:video_call/view/female/tabbar_Screen.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../provider/home_provider.dart';
 import '../details_screens/birthday_Screen.dart';
-import 'contrary_screen.dart';
+import 'Contrary_Language_screen/contrary_screen.dart';
 import 'live_screen.dart';
 import 'video_screen.dart';
 
@@ -19,20 +24,19 @@ class Bottom_Screen extends StatefulWidget {
 }
 
 class _Bottom_ScreenState extends State<Bottom_Screen> {
-  List WidgetsList=[Video_Screen(),Live_Screen(),ContraryTabbar_Screen(),User_Birthday(),User_Birthday(),];
+  List WidgetsList=[Video_Screen(),Live_Screen(),ContraryTabbar_Screen(),Post_Screen(),Profile_Screen(),];
   Home_Provider ? home_providert;
   Home_Provider ? home_providerf;
   @override
   Widget build(BuildContext context) {
     home_providert = Provider.of<Home_Provider>(context,listen: true);
     home_providerf = Provider.of<Home_Provider>(context,listen: false);
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.pink,
-        body:  WidgetsList[Provider.of<Home_Provider>(context,listen: true).i],
-        extendBody: true,
-       bottomNavigationBar:_createBottomNavigationBar(),
-      ),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
+      body:  WidgetsList[Provider.of<Home_Provider>(context,listen: true).i],
+      extendBody: true,
+     bottomNavigationBar:_createBottomNavigationBar(),
     );
   }
   Widget _createBottomNavigationBar() {
@@ -60,12 +64,12 @@ class _Bottom_ScreenState extends State<Bottom_Screen> {
                 label: 'contrary',
               ),
               BottomBarItem(
-                iconData: Icons.chat,
-                label: 'Chat',
+                iconData: Icons.broken_image_outlined,
+                label: 'post',
               ),
               BottomBarItem(
-                iconData: Icons.settings,
-                label: 'Setting',
+                iconData: Icons.person,
+                label: 'Profile',
               ),
             ],
             selectedIndex:Provider.of<Home_Provider>(context,listen:true).i ,
@@ -77,4 +81,6 @@ class _Bottom_ScreenState extends State<Bottom_Screen> {
       ),
     );
   }
+
+
 }

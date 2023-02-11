@@ -25,6 +25,7 @@ class _Selected_ScreenState extends State<Selected_Screen> {
     home_providerT = Provider.of<Home_Provider>(context,listen: true);
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             Image.asset("assets/image/Rectangle 1.jpg",height: double.infinity,width: double.infinity,fit: BoxFit.fill,),
