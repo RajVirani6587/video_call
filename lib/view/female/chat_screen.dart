@@ -29,13 +29,15 @@ class _Chat_ScreenState extends State<Chat_Screen> {
   Home_Provider? home_providert;
   @override
   Widget build(BuildContext context) {
-    home_providerf = Provider.of<Home_Provider>(context,listen: false);
-    home_providert = Provider.of<Home_Provider>(context,listen: true);
+    home_providerf = Provider.of<Home_Provider>(context, listen: false);
+    home_providert = Provider.of<Home_Provider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(icon:Icon(Icons.arrow_back_ios),onPressed: (){
-          Navigator.pop(context);
-        }),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -48,13 +50,16 @@ class _Chat_ScreenState extends State<Chat_Screen> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(50),
-              child: Image.asset("${home_providerf!.Datapickkk!.Image2}",
+              child: Image.asset(
+                "${home_providerf!.Datapickkk!.Image2}",
                 fit: BoxFit.fill,
-                width: MediaQuery.of(context).size.height*0.045,
-                height:  MediaQuery.of(context).size.height*0.045,
+                width: MediaQuery.of(context).size.height * 0.045,
+                height: MediaQuery.of(context).size.height * 0.045,
               ),
             ),
-            SizedBox(width: MediaQuery.of(context).size.width*0.02,),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.02,
+            ),
             Text("${home_providerf!.Datapickkk!.Name2}")
           ],
         ),

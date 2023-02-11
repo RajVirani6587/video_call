@@ -26,8 +26,8 @@ class _ContraryTabbar_ScreenState extends State<ContraryTabbar_Screen> {
                     children: [
                       TabBar(
                         indicatorWeight: 3,
-                        indicatorColor: Colors.purple,
-                        labelColor: Colors.purple,
+                        indicatorColor: Colors.purple.shade900,
+                        labelColor: Colors.purple.shade900,
                         unselectedLabelColor: Colors.grey,
                         labelStyle: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16.0),
@@ -36,7 +36,11 @@ class _ContraryTabbar_ScreenState extends State<ContraryTabbar_Screen> {
                           Tab(text: "language "),
                         ],
                       ),
-                      Container(height:0.7 ,width: double.infinity,color: Colors.black,),
+                      Container(
+                        height: 0.7,
+                        width: double.infinity,
+                        color: Colors.black,
+                      ),
                       SizedBox(
                         height: 820,
                         child: Column(
@@ -52,7 +56,6 @@ class _ContraryTabbar_ScreenState extends State<ContraryTabbar_Screen> {
                           ],
                         ),
                       ),
-
                     ],
                   ),
                 ),

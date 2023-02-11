@@ -1,4 +1,3 @@
-
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
@@ -29,52 +28,67 @@ class _Live_ScreenState extends State<Live_Screen> {
 
   @override
   Widget build(BuildContext context) {
-    home_providerf = Provider.of<Home_Provider>(context,listen: false);
-    home_providert = Provider.of<Home_Provider>(context,listen: true);
-    return SafeArea(
-      child: Scaffold(
-        body: PageView.builder(
+    home_providerf = Provider.of<Home_Provider>(context, listen: false);
+    home_providert = Provider.of<Home_Provider>(context, listen: true);
+    return WillPopScope(
+      onWillPop: dialog,
+      child: SafeArea(
+        child: Scaffold(
+          body: PageView.builder(
             scrollDirection: Axis.vertical,
             itemCount: home_providerf!.i1.length,
-          onPageChanged: (value) {
-                forvideo();
+            onPageChanged: (value) {
+              forvideo();
             },
-            itemBuilder: (Contest,index){
+            itemBuilder: (Contest, index) {
               return Stack(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.height*1,
-                        width: MediaQuery.of(context).size.width*1,
+                        height: MediaQuery.of(context).size.height * 1,
+                        width: MediaQuery.of(context).size.width * 1,
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(0),
                             child: _controller.value.isInitialized
-                                ?
-                            AspectRatio(
-                                aspectRatio: _controller.value.aspectRatio,
-                                child: VideoPlayer(_controller)) :
-                            Center(child: const CircularProgressIndicator(color: Colors.green,))
-                        ),
+                                ? AspectRatio(
+                                    aspectRatio: _controller.value.aspectRatio,
+                                    child: VideoPlayer(_controller))
+                                : Center(
+                                    child: const CircularProgressIndicator(
+                                    color: Colors.green,
+                                  ))),
                       ),
                     ],
                   ),
                   Column(
                     children: [
-                       Row(
-                         children: [
-                           IconButton(icon:Icon(Icons.arrow_back,color: Colors.white,size: 30,),onPressed: (){
-                               Navigator.pushReplacementNamed(context,'bottom');
-                             },
-                           ),
-                           Padding(
-                             padding: EdgeInsets.symmetric(horizontal: 10),
-                             child: Text("Live",style: TextStyle(color: Colors.white,fontSize: 20),),
-                           ),
-                         ],
-                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height*0.55,),
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(context, 'bottom');
+                            },
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
+                              "Live",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.55,
+                      ),
                       Expanded(
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -85,7 +99,7 @@ class _Live_ScreenState extends State<Live_Screen> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Padding(
-                                    padding:  EdgeInsets.only(right:5),
+                                    padding: EdgeInsets.only(right: 5),
                                     child: LikeButton(
                                       size: 40,
                                       circleColor: CircleColor(
@@ -108,16 +122,28 @@ class _Live_ScreenState extends State<Live_Screen> {
                                       },
                                     ),
                                   ),
-                                  SizedBox(height: MediaQuery.of(context).size.height*0.03,),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.03,
+                                  ),
                                   Padding(
-                                    padding:  EdgeInsets.only(right: 6),
-                                    child: IconButton(onPressed: (){
-                                      home_providerf!.Datapickkk = Modeldata2(
-                                        Name2: home_providerf!.i1[index].Name2,
-                                        Image2: home_providerf!.i1[index].Image2,
-                                      );
-                                      Navigator.pushNamed(context,'chat');
-                                    }, icon:Icon(Icons.chat,color: Colors.white,size: 33,)),
+                                    padding: EdgeInsets.only(right: 6),
+                                    child: IconButton(
+                                        onPressed: () {
+                                          home_providerf!.Datapickkk =
+                                              Modeldata2(
+                                            Name2:
+                                                home_providerf!.i1[index].Name2,
+                                            Image2: home_providerf!
+                                                .i1[index].Image2,
+                                          );
+                                          Navigator.pushNamed(context, 'chat');
+                                        },
+                                        icon: Icon(
+                                          Icons.chat,
+                                          color: Colors.white,
+                                          size: 33,
+                                        )),
                                   ),
                                 ],
                               ),
@@ -134,37 +160,53 @@ class _Live_ScreenState extends State<Live_Screen> {
                               Row(
                                 children: [
                                   Padding(
-                                    padding:  EdgeInsets.only(bottom: 13,right: 13,left: 13),
+                                    padding: EdgeInsets.only(
+                                        bottom: 13, right: 13, left: 13),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
-                                      child: Image.asset("${home_providerf!.i1[index].Image2}",
+                                      child: Image.asset(
+                                        "${home_providerf!.i1[index].Image2}",
                                         fit: BoxFit.fill,
-                                        width: MediaQuery.of(context).size.width*0.1,
-                                        height: MediaQuery.of(context).size.height*0.045,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.1,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.045,
                                       ),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(bottom: 8),
-                                    child: Text("${home_providerf!.i1[index].Name2}",style: TextStyle(color: Colors.white,fontSize: 20),),
+                                    child: Text(
+                                      "${home_providerf!.i1[index].Name2}",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20),
+                                    ),
                                   ),
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 8,right: 8,left: 8),
+                                padding: const EdgeInsets.only(
+                                    bottom: 8, right: 8, left: 8),
                                 child: Container(
-                                  width: MediaQuery.of(context).size.width*0.1,
-                                  height: MediaQuery.of(context).size.height*0.045,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  height: MediaQuery.of(context).size.height *
+                                      0.045,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: Colors.white,width: 3)
-                                  ),
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          color: Colors.white, width: 3)),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.asset(
                                       "assets/image/KNjVEZNv_400x400-removebg-preview.png",
-                                      width: MediaQuery.of(context).size.width*0.1,
-                                      height: MediaQuery.of(context).size.height*0.045,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.1,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.045,
                                       fit: BoxFit.fill,
                                     ),
                                   ),
@@ -179,6 +221,7 @@ class _Live_ScreenState extends State<Live_Screen> {
                 ],
               );
             },
+          ),
         ),
       ),
     );
@@ -187,14 +230,24 @@ class _Live_ScreenState extends State<Live_Screen> {
   void forvideo() {
     Random random = new Random();
     int rnd = random.nextInt(9);
-    _controller = VideoPlayerController.asset("${Provider.of<Home_Provider>(context,listen: false).i1[rnd].real}")
+    _controller = VideoPlayerController.asset(
+        "${Provider.of<Home_Provider>(context, listen: false).i1[rnd].real}")
       ..initialize().then((value) {
         setState(() {
           _controller.setLooping(true);
           _controller.play();
-          }
-        );
-      }
-    );
+        });
+      });
+  }
+
+  Future<bool> dialog() async {
+    home_providerf!.playpause();
+    _controller.pause();
+    back();
+    return await false;
+  }
+
+  void back() {
+    Navigator.pushReplacementNamed(context, 'bottom');
   }
 }
