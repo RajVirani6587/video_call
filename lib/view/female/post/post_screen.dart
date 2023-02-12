@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:provider/provider.dart';
 
-import '../../provider/home_provider.dart';
+import '../../../provider/home_provider.dart';
 
 class Post_Screen extends StatefulWidget {
   const Post_Screen({Key? key}) : super(key: key);

@@ -4,8 +4,8 @@ import 'package:like_button/like_button.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../model/video_model.dart';
-import '../../provider/home_provider.dart';
+import '../../../model/video_model.dart';
+import '../../../provider/home_provider.dart';
 
 class Live_Screen extends StatefulWidget {
   const Live_Screen({Key? key}) : super(key: key);

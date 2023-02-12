@@ -2,16 +2,16 @@ import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../provider/home_provider.dart';
+import '../../../provider/home_provider.dart';
 
-class Chat_Screen extends StatefulWidget {
-  const Chat_Screen({Key? key}) : super(key: key);
+class Profilechat_Screen extends StatefulWidget {
+  const Profilechat_Screen({Key? key}) : super(key: key);
 
   @override
-  State<Chat_Screen> createState() => _Chat_ScreenState();
+  State<Profilechat_Screen> createState() => _Profilechat_ScreenState();
 }
 
-class _Chat_ScreenState extends State<Chat_Screen> {
+class _Profilechat_ScreenState extends State<Profilechat_Screen> {
   ChatUser userr = ChatUser(
     id: '1',
     firstName: 'Charles',
@@ -51,7 +51,7 @@ class _Chat_ScreenState extends State<Chat_Screen> {
             ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child: Image.asset(
-                "${home_providerf!.Datapickkk!.Image2}",
+                "assets/image/mumbai-friendship-friends-tarqcubbn4ids4uy3vcc31sxpjntetc2.jpg",
                 fit: BoxFit.fill,
                 width: MediaQuery.of(context).size.height * 0.045,
                 height: MediaQuery.of(context).size.height * 0.045,
@@ -60,7 +60,7 @@ class _Chat_ScreenState extends State<Chat_Screen> {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.02,
             ),
-            Text("${home_providerf!.Datapickkk!.Name2}")
+            Text("angel&priya1452")
           ],
         ),
       ),

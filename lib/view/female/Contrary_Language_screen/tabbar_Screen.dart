@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'Contrary_Language_screen/contrary_screen.dart';
-import 'Contrary_Language_screen/language_screen.dart';
+import 'contrary_screen.dart';
+import 'language_screen.dart';
 
 class ContraryTabbar_Screen extends StatefulWidget {
   const ContraryTabbar_Screen({Key? key}) : super(key: key);

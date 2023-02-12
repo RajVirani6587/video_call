@@ -8,7 +8,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../provider/home_provider.dart';
+import '../../../provider/home_provider.dart';
 
 
 

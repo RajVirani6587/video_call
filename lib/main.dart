@@ -10,14 +10,15 @@ import 'package:video_call/view/details_screens/image_screen.dart';
 import 'package:video_call/view/details_screens/selecte_screen.dart';
 import 'package:video_call/view/female/Contrary_Language_screen/language_screen.dart';
 import 'package:video_call/view/female/bottem_bar.dart';
-import 'package:video_call/view/female/chat_screen.dart';
+import 'package:video_call/view/female/home/video_screen.dart';
+import 'package:video_call/view/female/live/chat_screen.dart';
 import 'package:video_call/view/female/Contrary_Language_screen/contrary_screen.dart';
-import 'package:video_call/view/female/live_screen.dart';
-import 'package:video_call/view/female/porfile_screen.dart';
-import 'package:video_call/view/female/post_screen.dart';
-import 'package:video_call/view/female/tabbar_Screen.dart';
-import 'package:video_call/view/female/video_play_screen.dart';
-import 'package:video_call/view/female/video_screen.dart';
+import 'package:video_call/view/female/live/live_screen.dart';
+import 'package:video_call/view/female/profile/porfile_screen.dart';
+import 'package:video_call/view/female/post/post_screen.dart';
+import 'package:video_call/view/female/Contrary_Language_screen/tabbar_Screen.dart';
+import 'package:video_call/view/female/home/video_play_screen.dart';
+import 'package:video_call/view/female/profile/profilechat_screen.dart';
 import 'package:video_call/view/splash%20screen/intro_screen.dart';
 import 'package:video_call/view/demo.dart';
 import 'package:video_call/view/details_screens/sele_gender.dart';
@@ -63,6 +64,7 @@ void main()async{
               'language':(contest)=>Language_Screen(),
               'Post':(contest)=>        Post_Screen(),
               'profile':(contest)=>  Profile_Screen(),
+              'prochat':(context)=>Profilechat_Screen(),
             },
           );
         },

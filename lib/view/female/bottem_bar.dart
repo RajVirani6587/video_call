@@ -3,16 +3,16 @@ import 'dart:math';
 import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:video_call/view/female/porfile_screen.dart';
-import 'package:video_call/view/female/post_screen.dart';
-import 'package:video_call/view/female/tabbar_Screen.dart';
+import 'package:video_call/view/female/profile/porfile_screen.dart';
+import 'package:video_call/view/female/post/post_screen.dart';
+import 'package:video_call/view/female/Contrary_Language_screen/tabbar_Screen.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../provider/home_provider.dart';
 import '../details_screens/birthday_Screen.dart';
 import 'Contrary_Language_screen/contrary_screen.dart';
-import 'live_screen.dart';
-import 'video_screen.dart';
+import 'home/video_screen.dart';
+import 'live/live_screen.dart';
 
 
 
