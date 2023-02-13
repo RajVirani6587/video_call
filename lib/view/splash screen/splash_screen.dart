@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../model/sharedpref_screen.dart';
+
 class splash_screen extends StatefulWidget {
   const splash_screen({Key? key}) : super(key: key);
 
@@ -12,8 +14,13 @@ class splash_screen extends StatefulWidget {
 
 class _splash_screenState extends State<splash_screen> {
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    // TODO: implement initState
+    super.initState();
     isLogin();
+  }
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -23,8 +30,16 @@ class _splash_screenState extends State<splash_screen> {
     );
   }
 
-  void isLogin() async {
-    Timer(Duration(seconds: 4), () =>
-        Navigator.pushReplacementNamed(context, 'intro'));
+  void isLogin()async{
+    SHRModel s1 = await getSHR();
+    if(s1.login == true){
+      Timer(Duration(seconds: 3),
+              ()=>Navigator.pushReplacementNamed(context,'selected')
+      );}
+    else{
+      Timer(Duration(seconds: 3),
+              ()=>Navigator.pushReplacementNamed(context, 'intro')
+      );
+    }
   }
 }

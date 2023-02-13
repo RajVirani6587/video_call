@@ -3,6 +3,8 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'package:video_call/provider/home_provider.dart';
 
+import '../../model/nikename_model.dart';
+
 class your_Screen extends StatefulWidget {
   const your_Screen({Key? key}) : super(key: key);
 
@@ -24,7 +26,7 @@ class _your_ScreenState extends State<your_Screen> {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     return SafeArea(
-      child: Scaffold(resizeToAvoidBottomInset: false,
+    child: Scaffold(resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             Image.asset("assets/image/Rectangle 1.jpg",height: double.infinity,width: double.infinity,fit: BoxFit.fill,),
@@ -132,7 +134,7 @@ class _your_ScreenState extends State<your_Screen> {
                       children: [
                         InkWell(
                           onTap: (){
-                               Navigator.pushReplacementNamed(context,'selected');
+                               Navigator.pushReplacementNamed(context,'selected',);
                            },
                           child:Neumorphic(
                             style: NeumorphicStyle(

@@ -39,7 +39,7 @@ class _Contrary_ScreenState extends State<Contrary_Screen> {
                   opacity: 0.9,
                   child: SingleChildScrollView(
                     child: Container(
-                      height: height! * 0.87,
+                      height: 720,
                       width: width! * 0.95,
                       decoration: BoxDecoration(
                           color: Colors.purple.shade900,

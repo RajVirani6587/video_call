@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../model/nikename_model.dart';
+
 class Image_Screen extends StatefulWidget {
   const Image_Screen({Key? key}) : super(key: key);
 
@@ -67,7 +69,7 @@ class _Image_ScreenState extends State<Image_Screen> {
                             f1.path.isEmpty?
                             showDialog(
                             context: context,
-                            builder: (BuildContext context) {
+                            builder: (BuildContext context){
                               return Expanded(
                                 child: AlertDialog(
                                   title: Text('Red Alert',style: TextStyle(color: Colors.red),),
@@ -87,7 +89,7 @@ class _Image_ScreenState extends State<Image_Screen> {
                                 ),
                               );
                             },
-                            ) :Navigator.pushNamed(context,'your');
+                            ) :Navigator.pushNamed(context,'your',);
                           },
                           child: Neumorphic(
                             style: NeumorphicStyle(

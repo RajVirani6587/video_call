@@ -41,7 +41,7 @@ void main()async{
             theme: ThemeData(
             ),
             debugShowCheckedModeBanner: false,
-           initialRoute: 'bottom',
+           //initialRoute: 'bottom',
             routes: {
               'd':(conest)=>            Call_screen(),
               '/':(contest)=>         splash_screen(),

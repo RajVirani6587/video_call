@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:video_call/model/nikename_model.dart';
+
+import '../../model/sharedpref_screen.dart';
 
 class Nickname_Screen extends StatefulWidget {
   const Nickname_Screen({Key? key}) : super(key: key);
@@ -65,10 +68,11 @@ class _Nickname_ScreenState extends State<Nickname_Screen> {
                         alignment: Alignment.center,
                         children: [
                           InkWell(
-                            onTap: (){
-
+                            onTap: ()async{
                               if(txtkey.currentState!.validate() == true){
-                                Navigator.pushNamed(context, 'avatar');
+                                String iname = txtnickname.text;
+                                  setSHR(iname, true);
+                                  Navigator.pushReplacementNamed(context, 'avatar');
                               }
                             },
                             child: Neumorphic(
@@ -87,7 +91,10 @@ class _Nickname_ScreenState extends State<Nickname_Screen> {
                   ),
                   SizedBox(height: height!*0.05,),
                   InkWell(onTap: (){
-                    Navigator.pushNamed(context,'avatar');
+                    nikename n1 =nikename(
+                      'user45872@'
+                    );
+                    Navigator.pushNamed(context,'avatar',arguments: n1);
                   },child: Text("Skip",style: TextStyle(color: Colors.white,fontSize: 20),)),
                 ],
               ),

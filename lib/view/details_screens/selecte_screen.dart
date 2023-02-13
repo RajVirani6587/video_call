@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
+import 'package:video_call/model/sharedpref_screen.dart';
 
 import '../../provider/home_provider.dart';
 
@@ -14,6 +15,11 @@ class Selected_Screen extends StatefulWidget {
 class _Selected_ScreenState extends State<Selected_Screen> {
   Home_Provider? home_providerT;
   Home_Provider? home_providerF;
+  @override
+  void initState() {
+    super.initState();
+    setIntro();
+  }
 
   double ? height;
   double ? width;
@@ -23,6 +29,7 @@ class _Selected_ScreenState extends State<Selected_Screen> {
     width = MediaQuery.of(context).size.width;
     home_providerF = Provider.of<Home_Provider>(context,listen: false);
     home_providerT = Provider.of<Home_Provider>(context,listen: true);
+
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -60,7 +67,7 @@ class _Selected_ScreenState extends State<Selected_Screen> {
                             width: width!*0.35,
                             decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                             child:InkWell(onTap: (){
-                              Navigator.pushReplacementNamed(context,'');
+                              Navigator.pushReplacementNamed(context,'',);
                             },child: Image.asset("assets/image/Group (1).jpg",fit: BoxFit.fill,)),
                           ),
                         ),
@@ -83,7 +90,7 @@ class _Selected_ScreenState extends State<Selected_Screen> {
                             width: width!*0.35,
                             decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                             child:InkWell(onTap: (){
-                              Navigator.pushReplacementNamed(context,'bottom');
+                              Navigator.pushReplacementNamed(context,'bottom',);
                             },child: Image.asset("assets/image/Group 1 (1).jpg",fit: BoxFit.fill,)),
                           ),
                         ),
