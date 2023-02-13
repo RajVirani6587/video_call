@@ -14,6 +14,13 @@ import 'package:video_call/view/female/home/video_screen.dart';
 import 'package:video_call/view/female/live/chat_screen.dart';
 import 'package:video_call/view/female/Contrary_Language_screen/contrary_screen.dart';
 import 'package:video_call/view/female/live/live_screen.dart';
+import 'package:video_call/view/female/post/store_screen.dart';
+import 'package:video_call/view/female/post/store_screen2.dart';
+import 'package:video_call/view/female/post/store_screen3.dart';
+import 'package:video_call/view/female/post/store_screen4.dart';
+import 'package:video_call/view/female/post/store_screen5.dart';
+import 'package:video_call/view/female/post/store_screen6.dart';
+import 'package:video_call/view/female/post/store_screen7.dart';
 import 'package:video_call/view/female/profile/porfile_screen.dart';
 import 'package:video_call/view/female/post/post_screen.dart';
 import 'package:video_call/view/female/Contrary_Language_screen/tabbar_Screen.dart';
@@ -65,6 +72,13 @@ void main()async{
               'Post':(contest)=>        Post_Screen(),
               'profile':(contest)=>  Profile_Screen(),
               'prochat':(context)=>Profilechat_Screen(),
+              'store1':(context)=>Store_Screen1(),
+              'store2':(context)=>Store_Screen2(),
+              'store3':(context)=>Store_Screen3(),
+              'store4':(context)=>Store_Screen4(),
+              'store5':(context)=>Store_Screen5(),
+              'store6':(context)=>Store_Screen6(),
+              'store7':(context)=>Store_Screen7(),
             },
           );
         },

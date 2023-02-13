@@ -131,8 +131,7 @@ class _Live_ScreenState extends State<Live_Screen> {
                                     padding: EdgeInsets.only(right: 6),
                                     child: IconButton(
                                         onPressed: () {
-                                          home_providerf!.Datapickkk =
-                                              Modeldata2(
+                                          home_providerf!.Datapickkk = Modeldata2(
                                             Name2:
                                                 home_providerf!.i1[index].Name2,
                                             Image2: home_providerf!
@@ -230,7 +229,7 @@ class _Live_ScreenState extends State<Live_Screen> {
 
   void forvideo() {
     Random random = new Random();
-    int rnd = random.nextInt(9);
+    int rnd = random.nextInt(home_providerf!.i1.length);
     _controller = VideoPlayerController.asset(
         "${Provider.of<Home_Provider>(context, listen: false).i1[rnd].real}")
       ..initialize().then((value) {

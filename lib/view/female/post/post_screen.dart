@@ -55,11 +55,23 @@ class _Post_ScreenState extends State<Post_Screen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ClipRRect(borderRadius: BorderRadius.circular(50),
-                            child: Image.asset("${home_providerf!.i1[index].Image2}",
-                              fit: BoxFit.fill,
-                              height:height!*0.045,
-                              width: width!*0.1,
+                          InkWell(
+                            onTap: (){
+                              Navigator.pushNamed(context, 'store1');
+                            },
+                            child: Container(
+                               padding: EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(width: 3,color: Colors.pink)
+                              ),
+                              child: ClipRRect(borderRadius: BorderRadius.circular(50),
+                                child: Image.asset("${home_providerf!.i1[index].Image2}",
+                                  fit: BoxFit.fill,
+                                  height:height!*0.045,
+                                  width: width!*0.08,
+                                ),
+                              ),
                             ),
                           ),
                            SizedBox(width: width!*0.03,),
