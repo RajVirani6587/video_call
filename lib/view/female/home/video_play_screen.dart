@@ -99,7 +99,7 @@ class _Second_ScreenState extends State<Second_Screen> {
             },
             ),
             floatingActionButton: Padding(
-              padding:  EdgeInsets.only(bottom: 5),
+              padding: const  EdgeInsets.only(bottom: 5),
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(

@@ -1,9 +1,12 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lottie/lottie.dart';
 
+import '../../model/ads_screen.dart';
 import '../../model/nikename_model.dart';
 
 class Image_Screen extends StatefulWidget {
@@ -16,58 +19,58 @@ class Image_Screen extends StatefulWidget {
 class _Image_ScreenState extends State<Image_Screen> {
   double ? height;
   double ? width;
+  bool isloading=false;
   File f1 = File("");
 
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
-          resizeToAvoidBottomInset: false,
-        body: Stack(
-          children: [
-            Image.asset("assets/image/Rectangle 1.jpg",height: double.infinity,width: double.infinity,fit: BoxFit.fill,),
-            Column(
-              children: [
-                Row(
-                  children: [
-                    IconButton(onPressed: (){
-                      Navigator.pushNamed(context,'nick');
-                    }, icon: Icon(Icons.arrow_back,size: 35,color: Colors.white,)),
-                  ],
-                ),
-                SizedBox(height: height!*0.1,),
-                Text("Upload your photo",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
-                SizedBox(height: height!*0.1,),
-                InkWell(
-                  onTap: (){
-                    bottomsheetdilaog();
-                       },
-                  child: Container(
-                    height: height!*0.35,
-                    width: width!*0.40,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white30,
-                    ),
-                    child: f1.path.isEmpty?Container(height: 150,width: 150,
-                      decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: Colors.white,width: 5),),
-                      child: Icon(Icons.photo_camera_outlined,color: Colors.white,size: 70,),):CircleAvatar(backgroundImage: FileImage(f1),
+    return WillPopScope(
+    onWillPop: dialog,
+      child: SafeArea(
+        child: Scaffold(
+            resizeToAvoidBottomInset: false,
+          body: Stack(
+            children: [
+              Image.asset("assets/image/Rectangle 1.jpg",height: double.infinity,width: double.infinity,fit: BoxFit.fill,),
+              Column(
+                children: [
+                  Row(
+                    children:[
+                      IconButton(onPressed: (){
+                        Navigator.pushNamed(context,'nick');
+                      }, icon: Icon(Icons.arrow_back,size: 35,color: Colors.white,)),
+                    ],
+                  ),
+                  SizedBox(height: height!*0.1,),
+                  Text("Upload your photo",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
+                  SizedBox(height: height!*0.1,),
+                  InkWell(
+                    onTap: (){
+                      bottomsheetdilaog();
+                         },
+                    child: Container(
+                      height: height!*0.35,
+                      width: width!*0.40,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white30,
+                      ),
+                      child: f1.path.isEmpty?Container(height: 150,width: 150,
+                        decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: Colors.white,width: 5),),
+                        child: Icon(Icons.photo_camera_outlined,color: Colors.white,size: 70,),):CircleAvatar(backgroundImage: FileImage(f1),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: height!*0.1,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        InkWell(
-                          onTap: (){
-                            f1.path.isEmpty?
-                            showDialog(
+                  SizedBox(height: height!*0.1,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: (){
+                          f1.path.isEmpty?
+                          showDialog(
                             context: context,
                             builder: (BuildContext context){
                               return Expanded(
@@ -75,40 +78,55 @@ class _Image_ScreenState extends State<Image_Screen> {
                                   title: Text('Red Alert',style: TextStyle(color: Colors.red),),
                                   content: Text('Please Upload a Photo'),
                                   actions: [
-                                     InkWell(onTap:(){
-                                       Navigator.pop(context);
-                                     },
-                                       child: Padding(
-                                         padding: EdgeInsets.all(8.0),
-                                         child: Container(
-                                           child: Text("ok",style: TextStyle(fontSize: 20),),
-                                         ),
-                                       ),
-                                     ),
+                                    InkWell(onTap:(){
+
+                                      interAds();
+                                      setState(() {
+                                        isloading=true;
+                                      });
+                                      Timer(Duration(seconds: 3), () {
+                                        setState(() {
+                                          isloading=false;
+                                        });
+                                        Navigator.pop(context);
+                                      });
+                                    },
+                                      child: Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Container(
+                                          child: Text("ok",style: TextStyle(fontSize: 20),),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               );
                             },
-                            ) :Navigator.pushNamed(context,'your',);
-                          },
-                          child: Neumorphic(
-                            style: NeumorphicStyle(
-                              shape: NeumorphicShape.concave,
-                              boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
-                              depth: 4,
-                              lightSource: LightSource.topLeft,
-                              color: Colors.white60,
-                            ),child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/image/Rectangle 2.jpg",fit: BoxFit.fill, height: height!*0.07,width: width!*0.85,)),),
+                          ) : Navigator.pushNamed(context,'your',);
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Neumorphic(
+                              style: NeumorphicStyle(
+                                shape: NeumorphicShape.concave,
+                                boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
+                                depth: 4,
+                                lightSource: LightSource.topLeft,
+                                color: Colors.white60,
+                              ),child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/image/Rectangle 2.jpg",fit: BoxFit.fill, height: height!*0.07,width: width!*0.85,)),),
+                            Text('Confirm',style: TextStyle(color: Colors.white,fontSize: 20),),
+                          ],
                         ),
-                        Text('Confirm',style: TextStyle(color: Colors.white,fontSize: 20),),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        )
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              isloading?Center(child: Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container()
+            ],
+          )
+        ),
       ),
     );
   }
@@ -124,30 +142,68 @@ class _Image_ScreenState extends State<Image_Screen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                InkWell(onTap: ()async{
-                  ImagePicker img = ImagePicker();
-                  XFile? f2 =  await img.pickImage(source: ImageSource.camera);
-                  setState((){
-                    f1 = File(f2!.path);
+                InkWell(onTap: (){
+                  interAds();
+                  setState(() {
+                    isloading=true;
                   });
-                  Navigator.pop(context);
+                  Timer(Duration(seconds: 3), () async {
+                    setState(() {
+                      isloading=false;
+                    });
+                    ImagePicker img = ImagePicker();
+                    XFile? f2 =  await img.pickImage(source: ImageSource.camera);
+                    setState((){
+                      f1 = File(f2!.path);
+                    });
+                    Navigator.pop(context);
+                  });
+
                 },child: Text("Take Photo",style: TextStyle(fontSize: 20),)),
-                InkWell(onTap: ()async{
-                     ImagePicker img = ImagePicker();
-                     XFile? f2 =  await img.pickImage(source: ImageSource.gallery);
-                     setState((){
-                       f1 = File(f2!.path);
-                          });
-                     Navigator.pop(context);
+                InkWell(onTap: (){
+
+                  interAds();
+                  setState(() {
+                    isloading=true;
+                  });
+                  Timer(Duration(seconds: 3), () async {
+                    setState(() {
+                      isloading=false;
+                    });
+                    ImagePicker img = ImagePicker();
+                    XFile? f2 =  await img.pickImage(source: ImageSource.gallery);
+                    setState((){
+                      f1 = File(f2!.path);
+                    });
+                    Navigator.pop(context);
+                  });
                        },
                   child: Text("Choose From Library",style: TextStyle(fontSize: 20))),
                 InkWell(onTap: (){
-                  Navigator.pop(context);
+                  interAds();
+                  setState(() {
+                    isloading=true;
+                  });
+
+                  Timer(Duration(seconds: 3), () async {
+                    setState(() {
+                      isloading=false;
+                    });
+                    Navigator.pop(context);
+                  });
                 },child: Text("Cancel",style: TextStyle(fontSize: 20))),
               ],
             ),
           );
         }
     );
+  }
+  Future<bool> dialog() async {
+    back();
+    return await false;
+  }
+
+  void back() {
+    Navigator.pushReplacementNamed(context, 'nick');
   }
 }

@@ -1,6 +1,7 @@
 import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:video_call/model/ads_screen.dart';
 import 'package:video_call/view/female/profile/porfile_screen.dart';
 import 'package:video_call/view/female/post/post_screen.dart';
 import 'package:video_call/view/female/Contrary_Language_screen/tabbar_Screen.dart';
@@ -79,8 +80,10 @@ class _Bottom_ScreenState extends State<Bottom_Screen> {
               ],
               selectedIndex:Provider.of<Home_Provider>(context,listen:true).i ,
               onSelect: (value) {
+                interAds();
                 Provider.of<Home_Provider>(context,listen:false).changeicon(value);
               },
+
             ),
           ],
         ),

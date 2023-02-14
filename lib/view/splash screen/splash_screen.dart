@@ -22,30 +22,12 @@ class _splash_screenState extends State<splash_screen> {
     // TODO: implement initState
     super.initState();
     getAdid();
-
     isLogin();
   }
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   if (appOpenAd != null) {
-  //     print("================================================ ");
-  //     appOpenAd!.show();
-  //   } else {
-  //     print("================================================ >>>>hello");
-  //   }
-  // }
+
 
   @override
   Widget build(BuildContext context) {
-    // Timer(Duration(seconds: 6), () {
-    //   if (appOpenAd != null) {
-    //     print("================================================hhhh ");
-    //     appOpenAd!.show();
-    //   }
-    //   Navigator.pushReplacementNamed(context, 'first');
-    // }
-    // );
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -58,11 +40,11 @@ class _splash_screenState extends State<splash_screen> {
   void isLogin()async{
     SHRModel s1 = await getSHR();
     if(s1.login == true){
-      Timer(Duration(seconds: 10),
-              ()=>Navigator.pushReplacementNamed(context,'selected')
+      Timer(Duration(seconds: 7),
+              ()=>Navigator.pushReplacementNamed(context,'bottom')
       );}
     else{
-      Timer(Duration(seconds: 10),
+      Timer(Duration(seconds: 7),
               ()=>Navigator.pushReplacementNamed(context, 'intro')
       );
     }
@@ -81,7 +63,6 @@ class _splash_screenState extends State<splash_screen> {
 
     print(newsString);
     newsjson = adModelFromJson(newsString.body);
-
     print('-----data----->${newsjson?.data[0].keyId}');
     openAds();
   }

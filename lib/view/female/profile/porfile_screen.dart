@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:video_call/model/ads_screen.dart';
 
 import '../../../model/nikename_model.dart';
 import '../../../model/sharedpref_screen.dart';
@@ -24,6 +27,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
   String nikname="";
   double ?height;
   double ?width;
+  bool isloading=false;
   Home_Provider? home_providerf;
   Home_Provider? home_providert;
   @override
@@ -61,7 +65,16 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                                         BorderRadius.circular(20)),
                                   ),
                                   onPressed: () {
-                                     Navigator.pushReplacementNamed(context,'contrary');
+                                    interVideoAds();
+                                    setState(() {
+                                      isloading=true;
+                                    });
+                                    Timer(Duration(seconds: 7), () {
+                                      setState(() {
+                                        isloading=false;
+                                      });
+                                      Navigator.pushReplacementNamed(context,'contrary');
+                                    });
                                   },
                                   child: Row(
                                     children: [
@@ -91,7 +104,16 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                                         BorderRadius.circular(20)),
                                   ),
                                   onPressed: () {
-                                     Navigator.pushReplacementNamed(context,'language');
+                                    interVideoAds();
+                                    setState(() {
+                                      isloading=true;
+                                    });
+                                    Timer(Duration(seconds: 7), () {
+                                      setState(() {
+                                        isloading=false;
+                                      });
+                                      Navigator.pushReplacementNamed(context,'language');
+                                    });
                                   },
                                   child: Row(
                                     children: [
@@ -112,7 +134,16 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                 SizedBox(height: height!*0.03,),
                 InkWell(
                   onTap: (){
-                    Navigator.pushNamed(context,'prochat');
+                    interVideoAds();
+                    setState(() {
+                      isloading=true;
+                    });
+                    Timer(Duration(seconds: 7), () {
+                      setState(() {
+                        isloading=false;
+                      });
+                      Navigator.pushNamed(context,'prochat');
+                    });
                   },
                   child: ListTile(
                     leading: Container(
@@ -141,7 +172,16 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                 ),
                 InkWell(
                   onTap: (){
-                    Navigator.pushNamed(context,'Post');
+                    interVideoAds();
+                    setState(() {
+                      isloading=true;
+                    });
+                    Timer(Duration(seconds: 7), () {
+                      setState(() {
+                        isloading=false;
+                      });
+                      Navigator.pushNamed(context,'Post');
+                    });
                   },
                   child: ListTile(
                     leading: Container(
@@ -290,6 +330,8 @@ class _Profile_ScreenState extends State<Profile_Screen> {
               ],
             ),
           ),
+          isloading?Center(child: Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container()
+
         ],
       ),
     );
