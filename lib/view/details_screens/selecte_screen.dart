@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:video_call/const/conts.dart';
 
 import '../../model/ads_screen.dart';
 import '../../provider/home_provider.dart';
@@ -21,6 +23,15 @@ class _Selected_ScreenState extends State<Selected_Screen> {
   bool isloading=false;
   double ? height;
   double ? width;
+  NativeAd? nativead;
+  bool isAdLoaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    nat();
+    bannerAds();
+  }
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
@@ -41,14 +52,27 @@ class _Selected_ScreenState extends State<Selected_Screen> {
                   Row(
                     children: [
                       IconButton(onPressed: (){
-                        Navigator.pop(context);
+                        Navigator.pushNamed(context,'your');
                       },
                           icon: Icon(Icons.arrow_back,size: 35,color: Colors.white,)),
                     ],
                   ),
+                  SizedBox(height: height!*0.05,),
+
+                  isAdLoaded ?
+                  Container(
+                    height: height!*0.13,
+                    alignment: Alignment.center,
+                    child: AdWidget(ad: nativead!),
+                  ) :
+                  Container(
+                      height: height!*0.13,
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator()
+                  ),
                   SizedBox(height: height!*0.1,),
                   Text("Selected Gender In Video Call",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 23),),
-                  SizedBox(height: height!*0.2,),
+                  SizedBox(height: height!*0.1,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -120,9 +144,17 @@ class _Selected_ScreenState extends State<Selected_Screen> {
                       ),
                     ],
                   ),
+                  SizedBox(height: height!*0.02,),
+                  Container(
+                    height: height!*0.06,
+                    child: AdWidget(
+                      ad: bannerAd!,
+                    ),
+                  ),
                 ],
               ),
-              isloading?Center(child:Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container()
+              isloading?Center(child:Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container(),
+
             ],
           ),
         ),
@@ -136,5 +168,30 @@ class _Selected_ScreenState extends State<Selected_Screen> {
 
   void back() {
     Navigator.pushReplacementNamed(context, 'your');
+  }
+
+
+  void nat(){
+    try
+    {
+      nativead = NativeAd(
+        adUnitId: '$na',
+        factoryId: 'listTile',
+        request: const AdRequest(),
+        listener: NativeAdListener(
+            onAdLoaded: (_) {
+              setState(() {
+                isAdLoaded = true;
+              });
+            },
+            onAdFailedToLoad: (ad, error) {
+              nat();
+
+            }),
+      );
+      nativead!.load();
+    }
+    on Exception
+    {}
   }
 }

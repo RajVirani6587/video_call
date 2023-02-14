@@ -3,8 +3,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
+import 'package:video_call/const/conts.dart';
 
 import '../../model/ads_screen.dart';
 import '../../model/nikename_model.dart';
@@ -21,6 +23,15 @@ class _Image_ScreenState extends State<Image_Screen> {
   double ? width;
   bool isloading=false;
   File f1 = File("");
+  NativeAd? nativead;
+  bool isAdLoaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    nat();
+    bannerAds();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +54,17 @@ class _Image_ScreenState extends State<Image_Screen> {
                       }, icon: Icon(Icons.arrow_back,size: 35,color: Colors.white,)),
                     ],
                   ),
-                  SizedBox(height: height!*0.1,),
+                  isAdLoaded ?
+                  Container(
+                    height: height!*0.13,
+                    alignment: Alignment.center,
+                    child: AdWidget(ad: nativead!),
+                  ) :
+                  Container(
+                      height: height!*0.13,
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator()
+                  ),
                   Text("Upload your photo",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
                   SizedBox(height: height!*0.1,),
                   InkWell(
@@ -120,6 +141,13 @@ class _Image_ScreenState extends State<Image_Screen> {
                         ),
                       ),
                     ],
+                  ),
+                  SizedBox(height: height!*0.02,),
+                  Container(
+                    height: height!*0.06,
+                    child: AdWidget(
+                      ad: bannerAd!,
+                    ),
                   ),
                 ],
               ),
@@ -205,5 +233,29 @@ class _Image_ScreenState extends State<Image_Screen> {
 
   void back() {
     Navigator.pushReplacementNamed(context, 'nick');
+  }
+
+  void nat(){
+    try
+    {
+      nativead = NativeAd(
+        adUnitId: '$na',
+        factoryId: 'listTile',
+        request: const AdRequest(),
+        listener: NativeAdListener(
+            onAdLoaded: (_) {
+              setState(() {
+                isAdLoaded = true;
+              });
+            },
+            onAdFailedToLoad: (ad, error) {
+              nat();
+
+            }),
+      );
+      nativead!.load();
+    }
+    on Exception
+    {}
   }
 }

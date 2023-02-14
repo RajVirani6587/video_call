@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:video_call/const/conts.dart';
 import 'package:video_call/provider/home_provider.dart';
 
 import '../../model/ads_screen.dart';
@@ -23,6 +25,15 @@ class _selecte_genderState extends State<selecte_gender> {
   bool isloading=false;
   double ? height;
   double ? width;
+  NativeAd? nativead;
+  bool isAdLoaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    nat();
+    bannerAds();
+  }
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
@@ -42,12 +53,23 @@ class _selecte_genderState extends State<selecte_gender> {
                     Row(
                       children: [
                         IconButton(onPressed: (){
-                          Navigator.pushNamed(context,'home');
+                          Navigator.pushNamed(context, 'home');
                         }, icon: Icon(Icons.arrow_back,size: 35,color: Colors.white,)),
                       ],
                     ),
-                      SizedBox(height: height!*0.1,),
-                      Text("In Which Interest In Gender",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),),
+                    isAdLoaded ?
+                    Container(
+                      height: height!*0.13,
+                      alignment: Alignment.center,
+                      child: AdWidget(ad: nativead!),
+                    ) :
+                    Container(
+                        height: height!*0.13,
+                        alignment: Alignment.center,
+                        child: CircularProgressIndicator()
+                    ),
+                    SizedBox(height: height!*0.02,),
+                    Text("In Which Interest In Gender",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),),
                        SizedBox(height: height!*0.09,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -155,7 +177,14 @@ class _selecte_genderState extends State<selecte_gender> {
                       ],
                     ),
                     SizedBox(height: height!*0.02,),
-                    Text("Can't be changed after confirmation",style: TextStyle(color: Colors.white,),)
+                    Text("Can't be changed after confirmation",style: TextStyle(color: Colors.white,),),
+                    SizedBox(height: height!*0.02,),
+                    Container(
+                      height: height!*0.06,
+                      child: AdWidget(
+                        ad: bannerAd!,
+                      ),
+                    ),
                   ],
                 ),
                 isloading?Center(child: Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container()
@@ -172,5 +201,29 @@ class _selecte_genderState extends State<selecte_gender> {
 
   void back() {
     Navigator.pushReplacementNamed(context, 'home');
+  }
+
+  void nat(){
+    try
+    {
+      nativead = NativeAd(
+        adUnitId: '$na',
+        factoryId: 'listTile',
+        request: const AdRequest(),
+        listener: NativeAdListener(
+            onAdLoaded: (_) {
+              setState(() {
+                isAdLoaded = true;
+              });
+            },
+            onAdFailedToLoad: (ad, error) {
+              nat();
+
+            }),
+      );
+      nativead!.load();
+    }
+    on Exception
+    {}
   }
 }

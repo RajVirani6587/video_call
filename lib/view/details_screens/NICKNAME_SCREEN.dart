@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
+import 'package:video_call/const/conts.dart';
 import '../../model/ads_screen.dart';
 import '../../model/sharedpref_screen.dart';
 
@@ -19,6 +21,16 @@ class _Nickname_ScreenState extends State<Nickname_Screen> {
   var txtkey = GlobalKey<FormState>();
   double ? height;
   double ? width;
+  NativeAd? nativead;
+  bool isAdLoaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    nat();
+    bannerAds();
+  }
+
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
@@ -41,7 +53,17 @@ class _Nickname_ScreenState extends State<Nickname_Screen> {
                         }, icon: Icon(Icons.arrow_back,size: 35,color: Colors.white,)),
                       ],
                     ),
-                    SizedBox(height: height!*0.1,),
+                    isAdLoaded ?
+                    Container(
+                      height: height!*0.13,
+                      alignment: Alignment.center,
+                      child: AdWidget(ad: nativead!),
+                    ) :
+                    Container(
+                        height: height!*0.13,
+                        alignment: Alignment.center,
+                        child: CircularProgressIndicator()
+                    ),
                     Text("My Nickname",style: TextStyle(color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold),),
                     SizedBox(height: height!*0.05,),
                      Padding(
@@ -118,6 +140,13 @@ class _Nickname_ScreenState extends State<Nickname_Screen> {
                         Navigator.pushNamed(context,'avatar');
                       });
                     },child: Text("Skip",style: TextStyle(color: Colors.white,fontSize: 20),)),
+                    SizedBox(height: height!*0.02,),
+                    Container(
+                      height: height!*0.06,
+                      child: AdWidget(
+                        ad: bannerAd!,
+                      ),
+                    ),
                   ],
                 ),
                 isloading?Center(child:Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container()
@@ -135,5 +164,28 @@ class _Nickname_ScreenState extends State<Nickname_Screen> {
 
   void back() {
     Navigator.pushReplacementNamed(context, 'birth');
+  }
+  void nat(){
+    try
+    {
+      nativead = NativeAd(
+        adUnitId: '$na',
+        factoryId: 'listTile',
+        request: const AdRequest(),
+        listener: NativeAdListener(
+            onAdLoaded: (_) {
+              setState(() {
+                isAdLoaded = true;
+              });
+            },
+            onAdFailedToLoad: (ad, error) {
+              nat();
+
+            }),
+      );
+      nativead!.load();
+    }
+    on Exception
+    {}
   }
 }

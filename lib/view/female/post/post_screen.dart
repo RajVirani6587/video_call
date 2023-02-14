@@ -24,6 +24,12 @@ class _Post_ScreenState extends State<Post_Screen> {
   bool isloading=false;
 
   @override
+  void initState() {
+    super.initState();
+    bannerAds();
+  }
+
+  @override
   Widget build(BuildContext context) {
    height= MediaQuery.of(context).size.height;
    width= MediaQuery.of(context).size.width;
@@ -198,7 +204,7 @@ class _Post_ScreenState extends State<Post_Screen> {
                 },
 
               ),
-              isloading?Center(child: Lottie.asset("assets/video/131601-circle-load.json")):Container()
+              isloading?Center(child: Lottie.asset("assets/video/131601-circle-load.json",height: 80,width: 80)):Container()
             ],
           ) ,
         ),

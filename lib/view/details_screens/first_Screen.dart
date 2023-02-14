@@ -32,6 +32,7 @@ class _Home_ScreenState extends State<Home_Screen> {
   void initState() {
     super.initState();
     nat();
+    bannerAds();
   }
   @override
   Widget build(BuildContext context) {
@@ -52,12 +53,12 @@ class _Home_ScreenState extends State<Home_Screen> {
                     SizedBox(height: height!*0.05,),
                     isAdLoaded ?
                     Container(
-                      height: height!*0.15,
+                      height: height!*0.13,
                       alignment: Alignment.center,
                       child: AdWidget(ad: nativead!),
                     ) :
                     Container(
-                        height: height!*0.15,
+                        height: height!*0.13,
                       alignment: Alignment.center,
                       child: CircularProgressIndicator()
                     ),
@@ -168,6 +169,13 @@ class _Home_ScreenState extends State<Home_Screen> {
                     ),
                     SizedBox(height: height!*0.02,),
                     Text("Can't be changed after confirmation",style: TextStyle(color: Colors.white,),),
+                    SizedBox(height: height!*0.02,),
+                    Container(
+                      height: height!*0.06,
+                     child: AdWidget(
+                       ad: bannerAd!,
+                     ),
+                    ),
                   ],
                 ),
                 isloading?Center(child: Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container()
@@ -181,7 +189,6 @@ class _Home_ScreenState extends State<Home_Screen> {
     back();
     return await false;
   }
-
   void back() {
     Navigator.pushReplacementNamed(context, 'intro');
   }
