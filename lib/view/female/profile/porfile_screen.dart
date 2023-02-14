@@ -61,7 +61,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                                         BorderRadius.circular(20)),
                                   ),
                                   onPressed: () {
-                                    // Navigator.pushReplacementNamed(context,'bottom');
+                                     Navigator.pushReplacementNamed(context,'contrary');
                                   },
                                   child: Row(
                                     children: [
@@ -91,7 +91,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                                         BorderRadius.circular(20)),
                                   ),
                                   onPressed: () {
-                                    // Navigator.pushReplacementNamed(context,'bottom');
+                                     Navigator.pushReplacementNamed(context,'language');
                                   },
                                   child: Row(
                                     children: [
@@ -168,7 +168,6 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                     child: Icon(Icons.image,color: Colors.pink,),
                   ),
                   title: Text("My Avatar",style: TextStyle(fontSize: 20,color: Colors.white),),
-                  trailing: Icon(Icons.arrow_forward_ios,color: Colors.white,),
                 ),
                 ListTile(
                   leading: Container(
@@ -200,13 +199,7 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                     child: Icon(Icons.text_fields,color: Colors.pink,),
                   ),
                   title: Text("Nickname",style: TextStyle(fontSize: 20,color: Colors.white),),
-                  trailing: Wrap(
-                    spacing: 10,
-                    children: [
-                      Text("user",style:TextStyle(fontWeight: FontWeight.w600,color: Colors.white),),
-                      Icon(Icons.arrow_forward_ios,color: Colors.white,),
-                    ],
-                  ),
+                  trailing: Text("$nikname",style:TextStyle(fontWeight: FontWeight.w600,color: Colors.white),),
                 ),
                 ListTile(
                   leading: Container(
@@ -304,7 +297,9 @@ class _Profile_ScreenState extends State<Profile_Screen> {
 
   Future<String> getdata() async {
     SHRModel s1=await getSHR();
-    nikname=s1.n1!;
+    setState(() {
+      nikname=s1.n1!;
+    });
     print("=======================$nikname");
     return nikname;
   }

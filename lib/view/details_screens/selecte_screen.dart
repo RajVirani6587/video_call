@@ -15,11 +15,6 @@ class Selected_Screen extends StatefulWidget {
 class _Selected_ScreenState extends State<Selected_Screen> {
   Home_Provider? home_providerT;
   Home_Provider? home_providerF;
-  @override
-  void initState() {
-    super.initState();
-    setIntro();
-  }
 
   double ? height;
   double ? width;
@@ -67,7 +62,7 @@ class _Selected_ScreenState extends State<Selected_Screen> {
                             width: width!*0.35,
                             decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                             child:InkWell(onTap: (){
-                              Navigator.pushReplacementNamed(context,'',);
+                              Navigator.pushReplacementNamed(context,'bottom',);
                             },child: Image.asset("assets/image/Group (1).jpg",fit: BoxFit.fill,)),
                           ),
                         ),

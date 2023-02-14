@@ -1,5 +1,6 @@
 import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_call/provider/home_provider.dart';
@@ -27,14 +28,14 @@ import 'package:video_call/view/female/Contrary_Language_screen/tabbar_Screen.da
 import 'package:video_call/view/female/home/video_play_screen.dart';
 import 'package:video_call/view/female/profile/profilechat_screen.dart';
 import 'package:video_call/view/splash%20screen/intro_screen.dart';
-import 'package:video_call/view/demo.dart';
 import 'package:video_call/view/details_screens/sele_gender.dart';
 import 'package:video_call/view/splash%20screen/splash_screen.dart';
 import 'package:video_call/view/details_screens/your_goal_screen.dart';
 
 void main()async{
 
-  WidgetsFlutterBinding.ensureInitialized(); //Add this
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();//Add this
   await FaceCamera.initialize();
 
   runApp(
@@ -48,9 +49,7 @@ void main()async{
             theme: ThemeData(
             ),
             debugShowCheckedModeBanner: false,
-           //initialRoute: 'bottom',
             routes: {
-              'd':(conest)=>            Call_screen(),
               '/':(contest)=>         splash_screen(),
               'intro':(contest)=>      intro_Screen(),
               'home':(contest)=>        Home_Screen(),
@@ -67,6 +66,7 @@ void main()async{
               'live':(contest)=>        Live_Screen(),
               'chat':(contest)=>        Chat_Screen(),
               'contrary':(contest)=>Contrary_Screen(),
+              'language':(contest)=>Language_Screen(),
               'tab':(contest)=>ContraryTabbar_Screen(),
               'language':(contest)=>Language_Screen(),
               'Post':(contest)=>        Post_Screen(),

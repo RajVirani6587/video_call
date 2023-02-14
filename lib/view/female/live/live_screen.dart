@@ -229,7 +229,7 @@ class _Live_ScreenState extends State<Live_Screen> {
 
   void forvideo() {
     Random random = new Random();
-    int rnd = random.nextInt(home_providerf!.i1.length);
+    int rnd = random.nextInt(Provider.of<Home_Provider>(context,listen: false).i1.length);
     _controller = VideoPlayerController.asset(
         "${Provider.of<Home_Provider>(context, listen: false).i1[rnd].real}")
       ..initialize().then((value) {

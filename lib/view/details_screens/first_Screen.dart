@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
+import 'package:video_call/model/ads_screen.dart';
 import 'package:video_call/provider/home_provider.dart';
 
 class Home_Screen extends StatefulWidget {
@@ -15,7 +18,7 @@ class _Home_ScreenState extends State<Home_Screen> {
 
   Home_Provider? home_providerT;
   Home_Provider? home_providerF;
-
+  bool isloading=false;
   double ? height;
   double ? width;
   @override
@@ -60,6 +63,15 @@ class _Home_ScreenState extends State<Home_Screen> {
                                 width: width!*0.35,
                                 decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                                 child:InkWell(onTap: (){
+                                  interVideoAds();
+                                  setState(() {
+                                    isloading=true;
+                                  });
+                                  Timer(Duration(seconds: 7), () {
+                                    setState(() {
+                                      isloading=false;
+                                    });
+                                  });
                                   home_providerF!.playpause();
                                 },child: home_providerT!.isplay ?Image.asset("assets/image/Group (2).jpg",fit: BoxFit.fill,):Image.asset("assets/image/Group (1).jpg",fit: BoxFit.fill,)),
                                ),
@@ -83,6 +95,15 @@ class _Home_ScreenState extends State<Home_Screen> {
                                 width: width!*0.35,
                                 decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                                child:InkWell(onTap: (){
+                                 interVideoAds();
+                                 setState(() {
+                                   isloading=true;
+                                 });
+                                 Timer(Duration(seconds: 7), () {
+                                   setState(() {
+                                     isloading=false;
+                                   });
+                                 });
                                       home_providerF!.playpause();
                                 },child: home_providerT!.isplay ?Image.asset("assets/image/Group 1 (1).jpg",fit: BoxFit.fill,):Image.asset("assets/image/Group 1 (2).jpg",fit: BoxFit.fill,)),
                               ),
@@ -102,7 +123,17 @@ class _Home_ScreenState extends State<Home_Screen> {
                         children: [
                           InkWell(
                             onTap: (){
-                              Navigator.pushNamed(context,'gender');
+                              interVideoAds();
+                              setState(() {
+                                isloading=true;
+                              });
+                              Timer(Duration(seconds: 7), () {
+                                setState(() {
+                                  isloading=false;
+                                });
+                                Navigator.pushNamed(context,'gender');
+                              });
+
                             },
                             child: Neumorphic(
                               style: NeumorphicStyle(
@@ -122,6 +153,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                   Text("Can't be changed after confirmation",style: TextStyle(color: Colors.white,),)
                 ],
               ),
+              isloading?Center(child: CircularProgressIndicator(),):Container()
             ],
           ),
        ),

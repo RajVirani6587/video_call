@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:video_call/model/nikename_model.dart';
-
 import '../../model/sharedpref_screen.dart';
 
 class Nickname_Screen extends StatefulWidget {
@@ -91,10 +89,9 @@ class _Nickname_ScreenState extends State<Nickname_Screen> {
                   ),
                   SizedBox(height: height!*0.05,),
                   InkWell(onTap: (){
-                    nikename n1 =nikename(
-                      'user45872@'
-                    );
-                    Navigator.pushNamed(context,'avatar',arguments: n1);
+                    String iname = "Admin";
+                    setSHR(iname, true);
+                    Navigator.pushNamed(context,'avatar');
                   },child: Text("Skip",style: TextStyle(color: Colors.white,fontSize: 20),)),
                 ],
               ),
