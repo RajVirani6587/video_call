@@ -154,7 +154,6 @@ class _selecte_genderState extends State<selecte_gender> {
                             ],
                           ),
                         ),
-
                       ],
                     ),
                     SizedBox(height: height!*0.02,),

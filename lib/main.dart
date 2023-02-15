@@ -31,6 +31,7 @@ import 'package:video_call/view/splash%20screen/intro_screen.dart';
 import 'package:video_call/view/details_screens/sele_gender.dart';
 import 'package:video_call/view/splash%20screen/splash_screen.dart';
 import 'package:video_call/view/details_screens/your_goal_screen.dart';
+import 'package:video_call/view/splash%20screen/termsofuse_screen.dart';
 
 void main()async{
 
@@ -51,6 +52,7 @@ void main()async{
             debugShowCheckedModeBanner: false,
             routes: {
               '/':(contest)=>         splash_screen(),
+              'terms':(contest)=>      Terms_Screen(),
               'intro':(contest)=>      intro_Screen(),
               'home':(contest)=>        Home_Screen(),
               'gender':(contest)=>   selecte_gender(),

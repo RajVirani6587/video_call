@@ -85,7 +85,9 @@ class _Second_ScreenState extends State<Second_Screen> {
                     child: Container(
                       height: MediaQuery.of(context).size.height*0.27,
                       width: MediaQuery.of(context).size.width*0.35,
-                      child: SmartFaceCamera(
+                      child: SmartFaceCamera(showCameraLensControl: false,
+                        showFlashControl: false,
+                        showControls: false,
                         //  autoCapture: true,
                         defaultCameraLens: CameraLens.front,
                         onCapture: (File? image) {
