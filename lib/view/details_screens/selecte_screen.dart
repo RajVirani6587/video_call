@@ -61,12 +61,12 @@ class _Selected_ScreenState extends State<Selected_Screen> {
 
                   isAdLoaded ?
                   Container(
-                    height: height!*0.13,
+                    height: height!*0.15,
                     alignment: Alignment.center,
                     child: AdWidget(ad: nativead!),
                   ) :
                   Container(
-                      height: height!*0.13,
+                      height: height!*0.15,
                       alignment: Alignment.center,
                       child: CircularProgressIndicator()
                   ),
@@ -143,13 +143,6 @@ class _Selected_ScreenState extends State<Selected_Screen> {
                         ],
                       ),
                     ],
-                  ),
-                  SizedBox(height: height!*0.02,),
-                  Container(
-                    height: height!*0.06,
-                    child: AdWidget(
-                      ad: bannerAd!,
-                    ),
                   ),
                 ],
               ),

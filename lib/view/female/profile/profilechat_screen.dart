@@ -1,6 +1,8 @@
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:video_call/const/conts.dart';
 
 import '../../../provider/home_provider.dart';
 
@@ -12,6 +14,18 @@ class Profilechat_Screen extends StatefulWidget {
 }
 
 class _Profilechat_ScreenState extends State<Profilechat_Screen> {
+
+  NativeAd? nativead;
+  bool isAdLoaded = false;
+
+
+
+  @override
+  initState()  {
+    // TODO: implement initState
+    super.initState();
+    nat();
+  }
   ChatUser userr = ChatUser(
     id: '1',
     firstName: 'Charles',
@@ -64,15 +78,53 @@ class _Profilechat_ScreenState extends State<Profilechat_Screen> {
           ],
         ),
       ),
-      body: DashChat(
-        currentUser: userr,
-        onSend: (ChatMessage m) {
-          setState(() {
-            messages.insert(0, m);
-          });
-        },
-        messages: messages,
+      body: Stack(
+        children: [
+          DashChat(
+            currentUser: userr,
+            onSend: (ChatMessage m) {
+              setState(() {
+                messages.insert(0, m);
+              });
+            },
+            messages: messages,
+          ),
+          isAdLoaded ?
+          Container(
+            height: MediaQuery.of(context).size.height*0.15,
+            alignment: Alignment.center,
+            child: AdWidget(ad: nativead!),
+          ) :
+          Container(
+              height: MediaQuery.of(context).size.height*0.15,
+              alignment: Alignment.center,
+              child: CircularProgressIndicator()
+          ),
+        ],
       ),
     );
+  }
+  void nat(){
+    try
+    {
+      nativead = NativeAd(
+        adUnitId: '$na',
+        factoryId: 'listTile',
+        request: const AdRequest(),
+        listener: NativeAdListener(
+            onAdLoaded: (_) {
+              setState(() {
+                isAdLoaded = true;
+              });
+            },
+            onAdFailedToLoad: (ad, error) {
+              nat();
+
+            }),
+      );
+      nativead!.load();
+    }
+    on Exception
+    {}
   }
 }

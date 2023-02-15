@@ -50,12 +50,12 @@ class _Language_ScreenState extends State<Language_Screen> {
                     ),
                     isAdLoaded ?
                     Container(
-                      height: height!*0.13,
+                      height: height!*0.15,
                       alignment: Alignment.center,
                       child: AdWidget(ad: nativead!),
                     ) :
                     Container(
-                        height: height!*0.13,
+                        height: height!*0.15,
                         alignment: Alignment.center,
                         child: CircularProgressIndicator()
                     ),
@@ -100,15 +100,7 @@ class _Language_ScreenState extends State<Language_Screen> {
                                         onPressed: () {
                                           interVideoAds();
                                           setState(() {
-                                            isloading=true;
-                                          });
-                                          Timer(Duration(seconds: 7), () {
-                                            setState(() {
-                                              isloading=false;
-                                            });
-                                            setState(() {
-                                              cnt = 0;
-                                            });
+                                            cnt = 0;
                                           });
                                         },
                                         child: Row(
@@ -330,20 +322,13 @@ class _Language_ScreenState extends State<Language_Screen> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: height! * 0.1,
+                    ),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 80),
-                child: Container(
-                  height: MediaQuery.of(context).size.height*0.06,
-                  child: AdWidget(
-                    ad: bannerAd!,
-                  ),
-                ),
-              ),
               isloading?Center(child:Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container()
-
             ],
           ),
         ),
@@ -354,7 +339,6 @@ class _Language_ScreenState extends State<Language_Screen> {
     back();
     return await false;
   }
-
   void back() {
     Navigator.pushReplacementNamed(context, 'bottom');
   }
@@ -366,17 +350,8 @@ class _Language_ScreenState extends State<Language_Screen> {
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),
         onPressed: () {
-          interVideoAds();
           setState(() {
-            isloading=true;
-          });
-          Timer(Duration(seconds: 7), () {
-            setState(() {
-              isloading=false;
-            });
-            setState(() {
-              cnt = i;
-            });
+            cnt = i;
           });
           },
         child: Text(

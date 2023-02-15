@@ -55,12 +55,12 @@ class _Nickname_ScreenState extends State<Nickname_Screen> {
                     ),
                     isAdLoaded ?
                     Container(
-                      height: height!*0.13,
+                      height: height!*0.15,
                       alignment: Alignment.center,
                       child: AdWidget(ad: nativead!),
                     ) :
                     Container(
-                        height: height!*0.13,
+                        height: height!*0.15,
                         alignment: Alignment.center,
                         child: CircularProgressIndicator()
                     ),
@@ -93,20 +93,21 @@ class _Nickname_ScreenState extends State<Nickname_Screen> {
                       children: [
                         InkWell(
                           onTap: ()async{
-                            interAds();
-                            setState(() {
-                              isloading=true;
-                            });
-                            Timer(Duration(seconds: 3), () {
+
+                            if(txtkey.currentState!.validate() == true){
+                              interAds();
                               setState(() {
-                                isloading=false;
+                                isloading=true;
                               });
-                              if(txtkey.currentState!.validate() == true){
+                              Timer(Duration(seconds: 3), () {
+                                setState(() {
+                                  isloading=false;
+                                });
                                 String iname = txtnickname.text;
                                 setSHR(iname, true);
                                 Navigator.pushNamed(context, 'avatar');
-                              }
-                            });
+                              });
+                            }
                           },
                           child: Stack(
                             alignment: Alignment.center,
@@ -140,13 +141,6 @@ class _Nickname_ScreenState extends State<Nickname_Screen> {
                         Navigator.pushNamed(context,'avatar');
                       });
                     },child: Text("Skip",style: TextStyle(color: Colors.white,fontSize: 20),)),
-                    SizedBox(height: height!*0.02,),
-                    Container(
-                      height: height!*0.06,
-                      child: AdWidget(
-                        ad: bannerAd!,
-                      ),
-                    ),
                   ],
                 ),
                 isloading?Center(child:Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container()

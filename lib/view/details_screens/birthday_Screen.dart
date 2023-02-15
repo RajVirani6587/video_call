@@ -59,12 +59,12 @@ class _User_BirthdayState extends State<User_Birthday> {
                   ),
                   isAdLoaded ?
                   Container(
-                    height: height!*0.13,
+                    height: height!*0.15,
                     alignment: Alignment.center,
                     child: AdWidget(ad: nativead!),
                   ) :
                   Container(
-                      height: height!*0.13,
+                      height: height!*0.15,
                       alignment: Alignment.center,
                       child: CircularProgressIndicator()
                   ),
@@ -74,17 +74,7 @@ class _User_BirthdayState extends State<User_Birthday> {
                   SizedBox(height: height!*0.05,),
                   InkWell(
                     onTap: (){
-                      interAds();
-                      setState(() {
-                        isloading=true;
-                      });
-                      Timer(Duration(seconds: 3), () {
-                        setState(() {
-                          isloading=false;
-                        });
                         timeDialog();
-                      });
-
                     },
                     child: Stack(
                       alignment: Alignment.center,
@@ -137,13 +127,7 @@ class _User_BirthdayState extends State<User_Birthday> {
                   ),
                   SizedBox(height: height!*0.02,),
                   Text("Not allowed to use under 18",style: TextStyle(color: Colors.white,),),
-                  SizedBox(height: height!*0.02,),
-                  Container(
-                    height: height!*0.06,
-                    child: AdWidget(
-                      ad: bannerAd!,
-                    ),
-                  ),
+
                 ],
               ),
              isloading?Center(child: Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container()

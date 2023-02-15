@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:video_call/const/conts.dart';
 import 'package:video_call/model/ads_screen.dart';
 
 import '../../../model/nikename_model.dart';
@@ -17,11 +19,16 @@ class Profile_Screen extends StatefulWidget {
 }
 
 class _Profile_ScreenState extends State<Profile_Screen> {
+  NativeAd? nativead;
+  bool isAdLoaded = false;
+
+
 
   @override
   initState()  {
     // TODO: implement initState
     super.initState();
+    nat();
     getdata();
   }
   String nikname="";
@@ -44,7 +51,19 @@ class _Profile_ScreenState extends State<Profile_Screen> {
           SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: height!*0.12,),
+                SizedBox(height: height!*0.05,),
+                isAdLoaded ?
+                Container(
+                  height: height!*0.15,
+                  alignment: Alignment.center,
+                  child: AdWidget(ad: nativead!),
+                ) :
+                Container(
+                    height: height!*0.15,
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator()
+                ),
+                SizedBox(height: height!*0.01,),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
@@ -327,6 +346,8 @@ class _Profile_ScreenState extends State<Profile_Screen> {
                   title: Text("My Level",style: TextStyle(fontSize: 20,color: Colors.white),),
                   trailing:Text("LV 0",style: TextStyle(color: Colors.white),),
                 ),
+                SizedBox(height: height!*0.07,),
+
               ],
             ),
           ),
@@ -345,4 +366,29 @@ class _Profile_ScreenState extends State<Profile_Screen> {
     print("=======================$nikname");
     return nikname;
   }
+
+  void nat(){
+    try
+    {
+      nativead = NativeAd(
+        adUnitId: '$na',
+        factoryId: 'listTile',
+        request: const AdRequest(),
+        listener: NativeAdListener(
+            onAdLoaded: (_) {
+              setState(() {
+                isAdLoaded = true;
+              });
+            },
+            onAdFailedToLoad: (ad, error) {
+              nat();
+
+            }),
+      );
+      nativead!.load();
+    }
+    on Exception
+    {}
+  }
+
 }

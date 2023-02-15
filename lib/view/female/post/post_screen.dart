@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:bottom_bar_matu/utils/app_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:like_button/like_button.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:video_call/const/conts.dart';
 
 import '../../../model/ads_screen.dart';
 import '../../../provider/home_provider.dart';
@@ -22,19 +24,19 @@ class _Post_ScreenState extends State<Post_Screen> {
   Home_Provider? home_providerf;
   Home_Provider? home_providert;
   bool isloading=false;
+  NativeAd? nativead;
+  bool isAdLoaded = false;
 
   @override
   void initState() {
     super.initState();
-    bannerAds();
+    nat();
   }
 
   @override
   Widget build(BuildContext context) {
    height= MediaQuery.of(context).size.height;
    width= MediaQuery.of(context).size.width;
-
-
    home_providerf = Provider.of<Home_Provider>(context,listen: false);
    home_providert = Provider.of<Home_Provider>(context,listen: true);
     return WillPopScope(
@@ -202,7 +204,6 @@ class _Post_ScreenState extends State<Post_Screen> {
                     ],
                   );
                 },
-
               ),
               isloading?Center(child: Lottie.asset("assets/video/131601-circle-load.json",height: 80,width: 80)):Container()
             ],
@@ -219,4 +220,32 @@ class _Post_ScreenState extends State<Post_Screen> {
   void back() {
     Navigator.pushReplacementNamed(context, 'bottom');
   }
+
+  void nat(){
+    try
+    {
+      nativead = NativeAd(
+        adUnitId: '$na',
+        factoryId: 'listTile',
+        request: const AdRequest(),
+        listener: NativeAdListener(
+            onAdLoaded: (_) {
+              setState(() {
+                isAdLoaded = true;
+              });
+            },
+            onAdFailedToLoad: (ad, error) {
+              nat();
+
+            }),
+      );
+      nativead!.load();
+    }
+    on Exception
+    {}
+
+
+  }
+
+
 }

@@ -38,7 +38,6 @@ class _your_ScreenState extends State<your_Screen> {
   Widget build(BuildContext context) {
     home_providert = Provider.of<Home_Provider>(context,listen: true);
     home_providerf = Provider.of<Home_Provider>(context,listen: false);
-
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     return WillPopScope(
@@ -59,12 +58,12 @@ class _your_ScreenState extends State<your_Screen> {
                   ),
                   isAdLoaded ?
                   Container(
-                    height: height!*0.13,
+                    height: height!*0.15,
                     alignment: Alignment.center,
                     child: AdWidget(ad: nativead!),
                   ) :
                   Container(
-                      height: height!*0.13,
+                      height: height!*0.15,
                       alignment: Alignment.center,
                       child: CircularProgressIndicator()
                   ),
@@ -75,17 +74,8 @@ class _your_ScreenState extends State<your_Screen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       InkWell(onTap: () {
-                        interAds();
                         setState(() {
-                          isloading=true;
-                        });
-                        Timer(Duration(seconds: 3), () {
-                          setState(() {
-                            isloading=false;
-                          });
-                          setState(() {
-                            cnt=0;
-                          });
+                          cnt=0;
                         });
 
                       },
@@ -103,17 +93,8 @@ class _your_ScreenState extends State<your_Screen> {
                                   fit: BoxFit.fill,))),
                       ),
                       InkWell(onTap: () {
-                        interVideoAds();
                         setState(() {
-                          isloading=true;
-                        });
-                        Timer(Duration(seconds: 7), () {
-                          setState(() {
-                            isloading=false;
-                          });
-                          setState(() {
-                            cnt=1;
-                          });
+                          cnt=1;
                         });
                       },
                         child: Container(
@@ -136,17 +117,8 @@ class _your_ScreenState extends State<your_Screen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       InkWell(onTap: () {
-                        interAds();
                         setState(() {
-                          isloading=true;
-                        });
-                        Timer(Duration(seconds: 3), () {
-                          setState(() {
-                            isloading=false;
-                          });
-                          setState(() {
-                            cnt=2;
-                          });
+                          cnt=2;
                         });
                       },
                         child: Container(
@@ -163,17 +135,9 @@ class _your_ScreenState extends State<your_Screen> {
                                   fit: BoxFit.fill,))),
                       ),
                       InkWell(onTap: () {
-                        interVideoAds();
+
                         setState(() {
-                          isloading=true;
-                        });
-                        Timer(Duration(seconds: 3), () {
-                          setState(() {
-                            isloading=false;
-                          });
-                          setState(() {
-                            cnt=3;
-                          });
+                          cnt=3;
                         });
                       },
                         child: Container(
@@ -197,7 +161,7 @@ class _your_ScreenState extends State<your_Screen> {
                     children: [
                       InkWell(
                         onTap: (){
-                          interAds();
+                          interVideoAds();
                           setState(() {
                             isloading=true;
                           });
@@ -224,13 +188,6 @@ class _your_ScreenState extends State<your_Screen> {
                         ),
                       ),
                     ],
-                  ),
-                  SizedBox(height: height!*0.02,),
-                  Container(
-                    height: height!*0.06,
-                    child: AdWidget(
-                      ad: bannerAd!,
-                    ),
                   ),
                 ],
               ),

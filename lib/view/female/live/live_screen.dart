@@ -49,7 +49,7 @@ class _Live_ScreenState extends State<Live_Screen> {
                     setState(() {
                       isloading=true;
                     });
-                    Timer(Duration(seconds: 7), () {
+                    Timer(Duration(seconds: 3), () {
                       setState(() {
                         isloading=false;
                       });
@@ -138,21 +138,25 @@ class _Live_ScreenState extends State<Live_Screen> {
                                           },
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: MediaQuery.of(context).size.height *
-                                            0.03,
-                                      ),
                                       Padding(
                                         padding: EdgeInsets.only(right: 6),
                                         child: IconButton(
                                             onPressed: () {
-                                              home_providerf!.Datapickkk = Modeldata2(
-                                                Name2:
-                                                    home_providerf!.i1[index].Name2,
-                                                Image2: home_providerf!
-                                                    .i1[index].Image2,
-                                              );
-                                              Navigator.pushNamed(context, 'chat');
+                                              interVideoAds();
+                                              setState(() {
+                                                isloading=true;
+                                              });
+                                              Timer(Duration(seconds: 3), () {
+                                                setState(() {
+                                                  isloading=false;
+                                                });
+                                                home_providerf!.Datapickkk = Modeldata2(
+                                                  Name2: home_providerf!.i1[index].Name2,
+                                                  Image2: home_providerf!.i1[index].Image2,
+                                                );
+                                                Navigator.pushNamed(context, 'chat');
+                                              });
+
                                             },
                                             icon: Icon(
                                               Icons.chat,

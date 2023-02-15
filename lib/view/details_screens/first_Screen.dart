@@ -53,12 +53,12 @@ class _Home_ScreenState extends State<Home_Screen> {
                     SizedBox(height: height!*0.05,),
                     isAdLoaded ?
                     Container(
-                      height: height!*0.13,
+                      height: height!*0.15,
                       alignment: Alignment.center,
                       child: AdWidget(ad: nativead!),
                     ) :
                     Container(
-                        height: height!*0.13,
+                        height: height!*0.15,
                       alignment: Alignment.center,
                       child: CircularProgressIndicator()
                     ),
@@ -82,15 +82,6 @@ class _Home_ScreenState extends State<Home_Screen> {
                                   width: width!*0.35,
                                   decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                                   child:InkWell(onTap: (){
-                                    interVideoAds();
-                                    setState(() {
-                                      isloading=true;
-                                    });
-                                    Timer(Duration(seconds: 7), () {
-                                      setState(() {
-                                        isloading=false;
-                                      });
-                                    });
                                     home_providerF!.playpause();
                                   },child: home_providerT!.isplay ?Image.asset("assets/image/Group (2).jpg",fit: BoxFit.fill,):Image.asset("assets/image/Group (1).jpg",fit: BoxFit.fill,)),
                                  ),
@@ -114,15 +105,6 @@ class _Home_ScreenState extends State<Home_Screen> {
                                   width: width!*0.35,
                                   decoration: BoxDecoration(border:Border.all(width: 2,color: Colors.white)),
                                  child:InkWell(onTap: (){
-                                   interVideoAds();
-                                   setState(() {
-                                     isloading=true;
-                                   });
-                                   Timer(Duration(seconds: 7), () {
-                                     setState(() {
-                                       isloading=false;
-                                     });
-                                   });
                                         home_providerF!.playpause();
                                   },child: home_providerT!.isplay ?Image.asset("assets/image/Group 1 (1).jpg",fit: BoxFit.fill,):Image.asset("assets/image/Group 1 (2).jpg",fit: BoxFit.fill,)),
                                 ),
@@ -143,11 +125,11 @@ class _Home_ScreenState extends State<Home_Screen> {
                             setState(() {
                               isloading=true;
                             });
-                            Timer(Duration(seconds: 7), () {
+                            Timer(Duration(seconds: 3), () {
                               setState(() {
                                 isloading=false;
                               });
-                              Navigator.pushNamed(context,'gender');
+                              Navigator.pushNamed(context, 'gender');
                             });
                           },
                           child: Stack(
@@ -169,13 +151,6 @@ class _Home_ScreenState extends State<Home_Screen> {
                     ),
                     SizedBox(height: height!*0.02,),
                     Text("Can't be changed after confirmation",style: TextStyle(color: Colors.white,),),
-                    SizedBox(height: height!*0.02,),
-                    Container(
-                      height: height!*0.06,
-                     child: AdWidget(
-                       ad: bannerAd!,
-                     ),
-                    ),
                   ],
                 ),
                 isloading?Center(child: Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container()

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -9,8 +10,6 @@ import 'package:lottie/lottie.dart';
 import 'package:video_call/const/conts.dart';
 
 import '../../model/ads_screen.dart';
-import '../../model/nikename_model.dart';
-
 class Image_Screen extends StatefulWidget {
   const Image_Screen({Key? key}) : super(key: key);
 
@@ -56,12 +55,12 @@ class _Image_ScreenState extends State<Image_Screen> {
                   ),
                   isAdLoaded ?
                   Container(
-                    height: height!*0.13,
+                    height: height!*0.15,
                     alignment: Alignment.center,
                     child: AdWidget(ad: nativead!),
                   ) :
                   Container(
-                      height: height!*0.13,
+                      height: height!*0.15,
                       alignment: Alignment.center,
                       child: CircularProgressIndicator()
                   ),
@@ -100,17 +99,7 @@ class _Image_ScreenState extends State<Image_Screen> {
                                   content: Text('Please Upload a Photo'),
                                   actions: [
                                     InkWell(onTap:(){
-
-                                      interAds();
-                                      setState(() {
-                                        isloading=true;
-                                      });
-                                      Timer(Duration(seconds: 3), () {
-                                        setState(() {
-                                          isloading=false;
-                                        });
-                                        Navigator.pop(context);
-                                      });
+                                      Navigator.pop(context);
                                     },
                                       child: Padding(
                                         padding: EdgeInsets.all(8.0),
@@ -123,7 +112,7 @@ class _Image_ScreenState extends State<Image_Screen> {
                                 ),
                               );
                             },
-                          ) : Navigator.pushNamed(context,'your',);
+                          ) : ad();
                         },
                         child: Stack(
                           alignment: Alignment.center,
@@ -142,13 +131,6 @@ class _Image_ScreenState extends State<Image_Screen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: height!*0.02,),
-                  Container(
-                    height: height!*0.06,
-                    child: AdWidget(
-                      ad: bannerAd!,
-                    ),
-                  ),
                 ],
               ),
               isloading?Center(child: Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container()
@@ -157,6 +139,19 @@ class _Image_ScreenState extends State<Image_Screen> {
         ),
       ),
     );
+  }
+
+  void ad(){
+    interVideoAds();
+    setState(() {
+      isloading=true;
+    });
+    Timer(Duration(seconds: 3), () {
+      setState(() {
+        isloading=false;
+      });
+      Navigator.pushNamed(context,'your',);
+    });
   }
   void bottomsheetdilaog(){
     showModalBottomSheet(
@@ -170,55 +165,26 @@ class _Image_ScreenState extends State<Image_Screen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                InkWell(onTap: (){
-                  interAds();
-                  setState(() {
-                    isloading=true;
+                InkWell(onTap: ()async{
+                  ImagePicker img = ImagePicker();
+                  XFile? f2 =  await img.pickImage(source: ImageSource.camera);
+                  setState((){
+                    f1 = File(f2!.path);
                   });
-                  Timer(Duration(seconds: 3), () async {
-                    setState(() {
-                      isloading=false;
-                    });
-                    ImagePicker img = ImagePicker();
-                    XFile? f2 =  await img.pickImage(source: ImageSource.camera);
-                    setState((){
-                      f1 = File(f2!.path);
-                    });
-                    Navigator.pop(context);
-                  });
+                  Navigator.pop(context);
 
                 },child: Text("Take Photo",style: TextStyle(fontSize: 20),)),
-                InkWell(onTap: (){
-
-                  interAds();
-                  setState(() {
-                    isloading=true;
+                InkWell(onTap: ()async{
+                  ImagePicker img = ImagePicker();
+                  XFile? f2 =  await img.pickImage(source: ImageSource.gallery);
+                  setState((){
+                    f1 = File(f2!.path);
                   });
-                  Timer(Duration(seconds: 3), () async {
-                    setState(() {
-                      isloading=false;
-                    });
-                    ImagePicker img = ImagePicker();
-                    XFile? f2 =  await img.pickImage(source: ImageSource.gallery);
-                    setState((){
-                      f1 = File(f2!.path);
-                    });
-                    Navigator.pop(context);
-                  });
+                  Navigator.pop(context);
                        },
                   child: Text("Choose From Library",style: TextStyle(fontSize: 20))),
                 InkWell(onTap: (){
-                  interAds();
-                  setState(() {
-                    isloading=true;
-                  });
-
-                  Timer(Duration(seconds: 3), () async {
-                    setState(() {
-                      isloading=false;
-                    });
-                    Navigator.pop(context);
-                  });
+                  Navigator.pop(context);
                 },child: Text("Cancel",style: TextStyle(fontSize: 20))),
               ],
             ),

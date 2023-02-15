@@ -27,7 +27,6 @@ class _Contrary_ScreenState extends State<Contrary_Screen> {
   void initState() {
     super.initState();
     nat();
-    bannerAds();
   }
 
 
@@ -51,12 +50,12 @@ class _Contrary_ScreenState extends State<Contrary_Screen> {
                     ),
                     isAdLoaded ?
                     Container(
-                      height: height!*0.13,
+                      height: height!*0.15,
                       alignment: Alignment.center,
                       child: AdWidget(ad: nativead!),
                     ) :
                     Container(
-                        height: height!*0.13,
+                        height: height!*0.15,
                         alignment: Alignment.center,
                         child: CircularProgressIndicator()
                     ),
@@ -99,20 +98,9 @@ class _Contrary_ScreenState extends State<Contrary_Screen> {
                                                   BorderRadius.circular(20)),
                                         ),
                                         onPressed: () {
-
-                                          interAds();
                                           setState(() {
-                                            isloading=true;
+                                            cnt = 0;
                                           });
-                                          Timer(Duration(seconds: 4), () {
-                                            setState(() {
-                                              isloading=false;
-                                            });
-                                            setState(() {
-                                              cnt = 0;
-                                            });
-                                          });
-
                                         },
                                         child: Row(
                                           children: [
@@ -363,6 +351,9 @@ class _Contrary_ScreenState extends State<Contrary_Screen> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: height! * 0.1,
+                    ),
                   ],
                 ),
                 isloading?Center(child: Lottie.asset("assets/video/131601-circle-load.json",width: 80,height: 80)):Container()
@@ -389,19 +380,9 @@ class _Contrary_ScreenState extends State<Contrary_Screen> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),
         onPressed: () {
-          interAds();
           setState(() {
-            isloading=true;
+            cnt = i;
           });
-          Timer(Duration(seconds: 4), () {
-            setState(() {
-              isloading=false;
-            });
-            setState(() {
-              cnt = i;
-            });
-          });
-
         },
         child: Row(
           children: [
